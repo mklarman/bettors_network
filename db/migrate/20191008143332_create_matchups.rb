@@ -9,6 +9,7 @@ class CreateMatchups < ActiveRecord::Migration[5.1]
 	  t.boolean :fav_home
 	  t.string :spread
 	  t.string :money_line
+	  t.string :dog_ml
 	  t.string :total
 	  t.string :fav_score
 	  t.string :dog_score

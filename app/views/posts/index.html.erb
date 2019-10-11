@@ -1,1 +1,26 @@
-YOU ARE HERE.  POSTS NEW
+<% self.get_time %>
+
+<%= current_user.id %>
+
+<%= form_for @post do |m| %>
+	
+	<div><%= m.text_field :user_id, value: current_user.id %></div>		
+	<div>Date: <%= m.text_field :date, value: @my_date %></div>
+	<div>Title: <%= m.text_field :title %></div>
+	<div>Content: <%= m.text_area :content %></div>	
+	<div><%= m.submit %></div>
+			
+<% end %>
+
+<div>
+	
+	<% Post.all.each do |p| %>
+
+		<div><%= link_to p.title, post_path(p.id) %></div>
+
+	<% end %>
+
+
+</div>
+
+

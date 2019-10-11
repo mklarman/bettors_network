@@ -1,0 +1,35 @@
+<% self.get_time %>
+
+<%= form_for @matchup do |m| %>
+			
+	<div>Date: <%= m.text_field :date, value: @my_date %></div>
+	<div>Sport: <%= m.text_field :sport %></div>
+	<div>Favorite: <%= m.text_field :fav %></div>
+	<div>Underdog: <%= m.text_field :dog %></div>
+	<div>Fav_field: <%= m.text_field :fav_home %></div>
+	<div>Spread: <%= m.text_field :spread %></div>
+	<div>Fav_ML: <%= m.text_field :money_line %></div>
+	<div>Dog_ML: <%= m.text_field :dog_ml %></div>
+	<div>Total: <%= m.text_field :total %></div>
+	<div>Home_Score: <%= m.text_field :fav_score %></div>
+	<div>Road_Score: <%= m.text_field :dog_score %></div>
+	<div>Winner: <%= m.text_field :ats_winner %></div>
+	<div>Total Result: <%= m.text_field :total_result %></div>
+	
+	<div><%= m.submit %></div>
+			
+
+<% end %>
+
+<div>
+	
+	<% Matchup.all.each do |m| %>
+
+		<% matchup = m.fav + " " + m.spread + " " + m.dog %>
+
+		<div><%= link_to matchup, matchup_path(m.id) %> </div>
+
+
+	<% end %>
+
+</div>

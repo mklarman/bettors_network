@@ -1,0 +1,7 @@
+<% @matchups.all.each do |m| %>
+
+	<% matchup = m.fav + " " + m.spread + " " + m.dog %>
+
+		<div><%= link_to matchup, edit_matchup_path(m.id) %> </div>
+
+<% end %>

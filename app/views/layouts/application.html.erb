@@ -8,8 +8,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <%= link_to "LOG IN", new_user_session_path %>
-  <%= link_to "LOG OUT", destroy_user_session_path, method: :delete %>
+  <% if !current_user %>
+
+  	<%= link_to "LOG IN", new_user_session_path %>
+
+  <% else %>
+  	
+  	<%= link_to "LOG OUT", destroy_user_session_path, method: :delete %>
+
+  	<%= link_to "Matchups", matchups_path %>
+  	<%= link_to "Posts", posts_path %>
+  	<%= link_to "Probes", team_probes_path %>
+
+  <% end %>
 
   <body>
     <%= yield %>

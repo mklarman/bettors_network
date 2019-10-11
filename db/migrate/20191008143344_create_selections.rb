@@ -4,7 +4,7 @@ class CreateSelections < ActiveRecord::Migration[5.1]
 
       t.integer :user_id
       t.integer :matchup_id
-      t.string :type
+      t.string :cat
       t.string :choice
 
       t.timestamps

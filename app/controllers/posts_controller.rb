@@ -16,9 +16,19 @@ class PostsController < ApplicationController
 
 	end
 
+	def show
+
+		@post = Post.find_by_id(params[:id])
+		@comment = Comment.new
+
+		@my_date
+
+	end
+
 	def index
 
 		@posts = Post.all
+		@post = Post.new
 
 	end
 

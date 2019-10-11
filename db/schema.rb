@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20191008143418) do
     t.boolean "fav_home"
     t.string "spread"
     t.string "money_line"
+    t.string "dog_ml"
     t.string "total"
     t.string "fav_score"
     t.string "dog_score"
@@ -70,7 +71,7 @@ ActiveRecord::Schema.define(version: 20191008143418) do
   create_table "selections", force: :cascade do |t|
     t.integer "user_id"
     t.integer "matchup_id"
-    t.string "type"
+    t.string "cat"
     t.string "choice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

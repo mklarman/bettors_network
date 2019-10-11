@@ -1,0 +1,16 @@
+<% self.get_time %>
+
+<div><%= @post.id %></div>
+
+
+
+<%= form_for @comment do |c| %>
+
+	<div><%= c.text_field :user_id, value: current_user.id %></div>		
+	<div><%= c.text_field :post_id, value: @post.id %></div>		
+	<div>Date: <%= c.text_field :date, value: @my_date %></div>
+	<div>Content: <%= c.text_area :content %></div>	
+	<div><%= c.submit %></div>
+
+
+<% end %>

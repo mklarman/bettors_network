@@ -9,7 +9,7 @@ resources :probes
 resources :secrets
 
 
-
+get "team/probes" => "matchups#probes"
 
 
  devise_for :users, :controllers => { :registrations => 'users/registrations' }

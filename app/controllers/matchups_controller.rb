@@ -18,13 +18,23 @@ class MatchupsController < ApplicationController
 
 	def index
 
+		@my_date
 		@matchup = Matchup.all
+		@matchup = Matchup.new
+
+	end
+
+	def show
+
+		@matchup = Matchup.find_by_id(params[:id])
+		@selection = Selection.new
 
 	end
 
 	def edit
 
 		@matchup = Matchup.find_by_id(params[:id])
+		@probe = Probe.new
 
 	end
 
@@ -34,7 +44,7 @@ class MatchupsController < ApplicationController
 
 		if @matchup.update(matchup_params)
 
-			redirect_to posts_path
+			redirect_to matchups_path
 		else
 
 			redirect_back(fallback_location: posts_path)
@@ -43,11 +53,19 @@ class MatchupsController < ApplicationController
 
 	end
 
+	def probes
+
+		@matchups = Matchup.all
+
+		@matchup_holder = []
+
+	end
+
 	private
 
 	def matchup_params
 
-		params.require(:matchup).permit(:date, :fav, :dog, :fav_home, :spread, :money_line, :total, :fav_score, :dog_score, :ats_winner, :total_result)
+		params.require(:matchup).permit(:date, :sport, :fav, :dog, :fav_home, :spread, :money_line, :dog_ml, :total, :fav_score, :dog_score, :ats_winner, :total_result)
 
 	end	
 end

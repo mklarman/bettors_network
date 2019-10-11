@@ -1,0 +1,9 @@
+<%= form_for @probe do |p| %>
+
+	<div><%= p.text_field :user_id, value: current_user.id %></div>
+	<div><%= p.text_field :matchup_id, value: @matchup.id %></div>
+	<div><%= p.text_area :research %></div>
+	<div><%= p.submit %></div>
+	
+
+<% end %>
