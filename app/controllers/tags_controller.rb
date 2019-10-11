@@ -28,6 +28,13 @@ class TagsController < ApplicationController
 
 	end
 
+	def search
+
+		@users = User.all
+		@tag = Tag.new
+
+	end
+
 	def update
 
 		@tag = Tag.find_by_id(params[:id])

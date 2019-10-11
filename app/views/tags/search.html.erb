@@ -1,0 +1,90 @@
+<div class = "hide">
+	
+	<%= form_for @tag do |t| %>
+		
+		<div><%= t.text_field :user_id, value: current_user.id %></div>
+		<div><%= t.text_field :tagged %></div>
+		<div><%= t.text_field :sport %></div>
+		<div><%= t.text_field :situation %></div>
+		<div><%= t.text_field :date %></div>
+		<div><%= t.text_field :cat %></div>
+
+	<% end %>
+
+</div>
+<script>
+	
+	var users = []
+
+
+</script>
+
+
+<% @users.each do |u| %>
+
+	<script>
+
+		var userObj = new Object()
+
+		userObj.id = "<%= u.id %>"
+		userObj.username = "<%= u.username %>"
+
+		users.push(userObj)
+
+
+	</script>
+
+<% end %>
+
+<script>
+
+	
+	for(i=0; i<users.length; i++){
+
+		var info = document.createElement("div")
+
+		var followButton_i = document.createElement('input');
+	    followButton_i.type = 'submit';
+	    followButton_i.value = "FOLLOW";
+	    followButton_i.addEventListener('click', function(){
+
+	    	tag_tagged.value = users[i].id
+	    	tag_cat.value = "follow"
+
+	    });
+
+	    var fadeButton = document.createElement('input');
+	    fadeButton.type = 'submit';
+	    fadeButton.value = "FADE"
+	    fadeButton.addEventListener('click', function(){
+
+
+	    });
+		
+
+		info.innerHTML = users[i].username + " " + users[i].id
+
+		info.appendChild(followButton_i)
+		info.appendChild(fadeButton)
+		
+
+		document.body.appendChild(info)
+	}
+
+	
+
+
+
+
+</script>
+	
+	
+
+
+
+	
+
+
+
+
+

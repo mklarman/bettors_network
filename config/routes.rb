@@ -10,6 +10,7 @@ resources :secrets
 
 
 get "team/probes" => "matchups#probes"
+get "user/tags" => "tags#search"
 
 
  devise_for :users, :controllers => { :registrations => 'users/registrations' }
