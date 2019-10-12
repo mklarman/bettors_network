@@ -4,7 +4,7 @@ class CreateTags < ActiveRecord::Migration[5.1]
 
     	t.integer :user_id
     	t.string :tagged
-    	t.boolean :sport
+    	t.string :sport
     	t.string :situation
     	t.string :date
     	t.string :cat 

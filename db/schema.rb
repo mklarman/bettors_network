@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20191008143418) do
   create_table "tags", force: :cascade do |t|
     t.integer "user_id"
     t.string "tagged"
-    t.boolean "sport"
+    t.string "sport"
     t.string "situation"
     t.string "date"
     t.string "cat"

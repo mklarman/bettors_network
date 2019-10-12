@@ -32,6 +32,7 @@ class TagsController < ApplicationController
 
 		@users = User.all
 		@tag = Tag.new
+		@my_date
 
 	end
 

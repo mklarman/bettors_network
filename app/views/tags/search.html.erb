@@ -1,3 +1,5 @@
+<% self.get_time %>
+
 <div class = "hide">
 	
 	<%= form_for @tag do |t| %>
@@ -6,7 +8,7 @@
 		<div><%= t.text_field :tagged %></div>
 		<div><%= t.text_field :sport %></div>
 		<div><%= t.text_field :situation %></div>
-		<div><%= t.text_field :date %></div>
+		<div><%= t.text_field :date, value: @my_date %></div>
 		<div><%= t.text_field :cat %></div>
 
 	<% end %>
@@ -38,47 +40,56 @@
 
 <script>
 
+	var followButton;
+	var fadeButton;
 	
 	for(i=0; i<users.length; i++){
 
 		var info = document.createElement("div")
 
-		var followButton_i = document.createElement('input');
-	    followButton_i.type = 'submit';
-	    followButton_i.value = "FOLLOW";
-	    followButton_i.addEventListener('click', function(){
+		followButton = document.createElement('input');
+	    followButton.type = 'submit';
+	    followButton.value = "FOLLOW";
+	    followButton.name = users[i].id;
+	    followButton.setAttribute("class", "fo_buttons");
 
-	    	tag_tagged.value = users[i].id
-	    	tag_cat.value = "follow"
-
-	    });
-
-	    var fadeButton = document.createElement('input');
+	    fadeButton = document.createElement('input');
 	    fadeButton.type = 'submit';
-	    fadeButton.value = "FADE"
-	    fadeButton.addEventListener('click', function(){
-
-
-	    });
+	    fadeButton.value = "FADE";
+	    fadeButton.name = users[i].id
+	    fadeButton.setAttribute("class", "fa_buttons");
+	    
 		
 
 		info.innerHTML = users[i].username + " " + users[i].id
 
-		info.appendChild(followButton_i)
+		info.appendChild(followButton)
 		info.appendChild(fadeButton)
 		
 
 		document.body.appendChild(info)
 	}
 
-	
+	var foButtons = document.getElementsByClassName("fo_buttons");
+	var faButtons = document.getElementsByClassName("fa_buttons");
 
+	for (let i=0; i<foButtons.length; i++){
 
+		foButtons[i].addEventListener("click", function(){
+
+			tag_tagged.value = foButtons[i].name
+			tag_cat.value = "follow"
+			tag_sport.value = "NFL"
+			tag_situation.value = "home dog under 3"
+			new_tag.submit()
+
+		}, false)
+	}
 
 
 </script>
 	
-	
+
 
 
 
