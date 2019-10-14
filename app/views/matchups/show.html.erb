@@ -7,3 +7,51 @@
 	<div><%= s.submit  %></div>
 
 <% end %>
+
+<script>
+
+	let dogSpread = <%= @matchup.spread.to_f * -1 %>
+	dogSpread = "+" + dogSpread.toString()
+	
+	let favChoice = "<%= @matchup.fav + ' ' + @matchup.spread %>"
+	let dogChoice = "<%= @matchup.dog + ' ' %>" + dogSpread.toString()
+
+	console.log(dogChoice)
+	
+
+
+
+
+</script>
+
+
+<div>
+	
+	<div class="selec" id="fav_selec"></div>
+
+
+	<div class="selec" id="dog_selec"></div>
+
+
+</div>
+
+<script>
+	
+	let teamSelec = document.getElementsByClassName("selec")
+	fav_selec.innerHTML = favChoice
+	dog_selec.innerHTML = dogChoice
+
+	for(let i=0; i<teamSelec.length; i++){
+
+		teamSelec[i].addEventListener("click", function(){
+
+			selection_choice.value = teamSelec[i].innerHTML
+
+		})
+
+	}
+
+
+
+
+</script>
