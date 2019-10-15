@@ -28,6 +28,8 @@ class MatchupsController < ApplicationController
 
 		@matchup = Matchup.find_by_id(params[:id])
 		@selection = Selection.new
+		@side_check = false
+		@total_check = false
 
 	end
 
