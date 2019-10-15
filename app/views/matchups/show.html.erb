@@ -16,16 +16,14 @@
 	let favChoice = "<%= @matchup.fav + ' ' + @matchup.spread %>"
 	let dogChoice = "<%= @matchup.dog + ' ' %>" + dogSpread.toString()
 
-	console.log(dogChoice)
-	
-
-
+	let ovrSelec = "OVR " + "<%= @matchup.total %>"
+	let undSelec = "UND " + "<%= @matchup.total %>"
 
 
 </script>
 
 
-<div>
+<div><div id="selec_head">CHOOSE THE SIDE</div>
 	
 	<div class="selec" id="fav_selec"></div>
 
@@ -35,17 +33,93 @@
 
 </div>
 
+<div>
+	
+	<input type="submit" value="SUBMIT PICK" id="sub_selec"></div>
+
+
+</div>
+
+
+<div><div id="selec_head">CHOOSE THE TOTAL</div>
+	
+	<div class="selec" id="ovr_selec"></div>
+
+
+	<div class="selec" id="und_selec"></div>
+
+
+</div>
+
+<div>
+	
+	<input type="submit" value="SUBMIT PICK" id="tot_selec"></div>
+
+
+</div>
 <script>
 	
 	let teamSelec = document.getElementsByClassName("selec")
 	fav_selec.innerHTML = favChoice
 	dog_selec.innerHTML = dogChoice
+	ovr_selec.innerHTML = ovrSelec
+	und_selec.innerHTML = undSelec
+	let subSelec = document.getElementById("sub_selec")
+	let totSelec = document.getElementById("tot_selec")
+
 
 	for(let i=0; i<teamSelec.length; i++){
 
 		teamSelec[i].addEventListener("click", function(){
 
-			selection_choice.value = teamSelec[i].innerHTML
+			if (teamSelec[i].innerHTML == favChoice || teamSelec[i].innerHTML == dogChoice ){
+
+				fav_selec.style.color = "red";
+				dog_selec.style.color = "red";
+
+				if (teamSelec[i].innerHTML == favChoice){
+
+					fav_selec.style.color = "blue";
+				}
+
+				if (teamSelec[i].innerHTML == dogChoice){
+
+					dog_selec.style.color = "blue";
+				}
+
+				selection_choice.value = teamSelec[i].innerHTML
+				selection_cat.value = "side"
+
+				subSelec.addEventListener("click", function(){
+
+					new_selection.submit()
+				})
+
+			}else{
+
+				ovr_selec.style.color = "red";
+				und_selec.style.color = "red";
+
+				if (teamSelec[i].innerHTML == ovrSelec){
+
+					ovr_selec.style.color = "blue";
+				}
+
+				if (teamSelec[i].innerHTML == undSelec){
+
+					und_selec.style.color = "blue";
+				}
+
+				selection_choice.value = teamSelec[i].innerHTML
+				selection_cat.value = "total"
+
+				totSelec.addEventListener("click", function(){
+
+					new_selection.submit()
+				})
+
+
+			}
 
 		})
 
