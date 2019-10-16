@@ -1,16 +1,18 @@
 <% self.selections_check %>
 <%= @side_check %>
 
+<div class = "hide">
+	<%= form_for @selection do |s| %>
+		
+		<div><%= s.hidden_field :user_id, value: current_user.id %></div>
+		<div><%= s.hidden_field :matchup_id, value: @matchup.id %></div>
+		<div>TYPE: <%= s.text_field :cat %></div>
+		<div>PICK: <%= s.text_field :choice %></div>
+		<div><%= s.submit  %></div>
 
-<%= form_for @selection do |s| %>
-	
-	<div><%= s.hidden_field :user_id, value: current_user.id %></div>
-	<div><%= s.hidden_field :matchup_id, value: @matchup.id %></div>
-	<div>TYPE: <%= s.text_field :cat %></div>
-	<div>PICK: <%= s.text_field :choice %></div>
-	<div><%= s.submit  %></div>
+	<% end %>
 
-<% end %>
+</div>
 
 <script>
 

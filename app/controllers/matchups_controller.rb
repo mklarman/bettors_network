@@ -37,6 +37,7 @@ class MatchupsController < ApplicationController
 
 		@matchup = Matchup.find_by_id(params[:id])
 		@probe = Probe.new
+		@username
 
 	end
 

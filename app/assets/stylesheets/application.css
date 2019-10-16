@@ -14,6 +14,11 @@
  *= require_self
  */
 
+ .hide{
+
+ 	display: none;
+ }
+
 #log_in{
 
 	height: 100%;
@@ -60,4 +65,74 @@
 	font-size: 20px;
 	background: black;
 	color: white;
+}
+
+#ovr_selec{
+
+	margin-left: 25%;
+}
+
+.probe_form{
+
+	margin-top: 10%;
+	margin-left: 5%;
+	height: 100%;
+	width: 40%;
+	font-size: 25px;
+	display: inline-block;
+	vertical-align: top;
+
+
+}
+
+.probe_input{
+
+	height: 100%;
+	width: 40%;
+
+
+
+}
+
+.probe_submit{
+
+
+}
+
+.probe_list{
+
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 10%;
+	margin-left: 5%;
+	height: 100%;
+	width: 40%;
+	font-size: 30px;
+
+}
+
+#probes_cont{
+
+	height: 100%;
+	width: 100%;
+}
+
+#probe_banner{
+
+	margin-top: 5%;
+	height: 100%;
+	width: 100%;
+	font-size: 30px;
+	background: navy;
+	color: white;
+}
+
+#data_cont{
+
+	margin-bottom: 3%;
+	margin-top: 3%;
+	border: 3px solid black;
+	height: 100%;
+	width: 100%;
+	background: gray;
 }

@@ -24,4 +24,18 @@ module MatchupsHelper
 		end
 
 	end
+
+	def get_username(user_id)
+
+		User.all.each do |u|
+
+			if u.id == user_id
+
+				@username = u.username
+
+			end
+		end
+
+
+	end
 end

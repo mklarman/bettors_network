@@ -1,9 +1,48 @@
-<%= form_for @probe do |p| %>
+<div id = "probes_cont">
 
-	<div><%= p.text_field :user_id, value: current_user.id %></div>
-	<div><%= p.text_field :matchup_id, value: @matchup.id %></div>
-	<div><%= p.text_area :research %></div>
-	<div><%= p.submit %></div>
-	
+	<div id="probe_banner">THIS PAGE IS DEDICATED TO REPORTING NEWS AND INFROMATION ABOUT <%= @matchup.fav + " VS. " + @matchup.dog %> THAT YOU SEE ON TV, READ IN NEWSPAPERS, OR COME ACROSS ON THE INTERNET.  THE COMMUNITY WILL COMPILE THE INFORMATION HERE SO WE CAN ALL BENEFIT.</div>
 
-<% end %>
+
+	<div class="probe_form"><div id="probe_text">Add Your Information Or Research Below.</div> 
+		
+		<%= form_for @probe do |p| %>
+
+			<div><%= p.hidden_field :user_id, value: current_user.id %></div>
+			<div><%= p.hidden_field :matchup_id, value: @matchup.id %></div>
+			<div class="probe_input"><%= p.text_area :research %></div>
+			<div class="probe_submit"><%= p.submit "SUBMIT RESEARCH" %></div>
+			
+
+		<% end %>
+
+	</div>
+
+	<div class="probe_list">
+		
+		<div class = "probe_info">
+			
+			<% @matchup.probes.each do |m| %>
+
+				<% self.get_username(m.user_id) %>
+
+					<div id="data_cont">
+
+						<div class = "probe data" style="color: navy;">Contributor: <%= @username %></div>
+						<div class = "probe data">Info: <%= m.research %></div>
+
+					</div>
+
+
+
+			<% end %>
+
+
+
+		</div>
+
+
+
+	</div>
+
+
+</div>
