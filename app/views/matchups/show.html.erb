@@ -7,6 +7,7 @@
 		<div><%= s.hidden_field :user_id, value: current_user.id %></div>
 		<div><%= s.hidden_field :matchup_id, value: @matchup.id %></div>
 		<div>TYPE: <%= s.text_field :cat %></div>
+		<div>SPORT: <%= s.text_field :sport, value: @matchup.sport %></div>
 		<div>PICK: <%= s.text_field :choice %></div>
 		<div><%= s.submit  %></div>
 
@@ -66,7 +67,7 @@
 
 	<div>
 		
-		<input type="submit" value="SUBMIT PICK" id="tot_selec"><
+		<input type="submit" value="SUBMIT PICK" id="tot_selec">
 
 
 	</div>
@@ -164,3 +165,10 @@
 
 
 </script>
+
+
+
+
+
+
+

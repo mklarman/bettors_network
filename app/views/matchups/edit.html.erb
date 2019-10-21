@@ -1,3 +1,4 @@
+
 <div id = "probes_cont">
 
 	<div id="probe_banner">THIS PAGE IS DEDICATED TO REPORTING NEWS AND INFROMATION ABOUT <%= @matchup.fav + " VS. " + @matchup.dog %> THAT YOU SEE ON TV, READ IN NEWSPAPERS, OR COME ACROSS ON THE INTERNET.  THE COMMUNITY WILL COMPILE THE INFORMATION HERE SO WE CAN ALL BENEFIT.</div>
@@ -44,5 +45,26 @@
 
 	</div>
 
+
+</div>
+
+<div style="margin-top: 5%;">
+
+	<% if current_user.admin == true %>
+
+		<%= form_for @matchup do |m| %>
+
+			<div>Home_Score: <%= m.text_field :fav_score %></div>
+			<div>Road_Score: <%= m.text_field :dog_score %></div>
+			<div>Winner: <%= m.text_field :ats_winner %></div>
+			<div>Total Result: <%= m.text_field :total_result %></div>
+			
+			<div><%= m.submit %></div>
+				
+
+		<% end %>
+
+
+	<% end %>
 
 </div>

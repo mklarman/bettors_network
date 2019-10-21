@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20191008143418) do
   create_table "selections", force: :cascade do |t|
     t.integer "user_id"
     t.integer "matchup_id"
+    t.string "sport"
     t.string "cat"
     t.string "choice"
     t.datetime "created_at", null: false

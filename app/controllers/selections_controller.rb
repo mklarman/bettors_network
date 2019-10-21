@@ -47,7 +47,7 @@ class SelectionsController < ApplicationController
 
 	def selection_params
 
-		params.require(:selection).permit(:user_id, :matchup_id, :cat, :choice)
+		params.require(:selection).permit(:user_id, :sport, :matchup_id, :cat, :choice)
 
 	end	
 end
