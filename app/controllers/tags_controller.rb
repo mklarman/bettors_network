@@ -33,7 +33,8 @@ class TagsController < ApplicationController
 		@users = User.all
 		@tag = Tag.new
 		@my_date
-		@all_nfl
+		@all_nfl = []
+		@all_nba = []
 
 	end
 
