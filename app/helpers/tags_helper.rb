@@ -10,6 +10,57 @@ module TagsHelper
 			total_winners = 0
 			total_losers = 0
 
+			home_winners = 0
+			home_losers = 0
+
+			road_winners = 0
+			road_losers = 0
+
+			home_low_fav_winners = 0
+			home_low_fav_losers = 0
+
+			home_low_dog_winners = 0
+			home_low_dog_losers = 0
+
+			home_mid_fav_winners = 0
+			home_mid_fav_losers = 0
+
+			home_mid_dog_winners = 0
+			home_mid_dog_losers = 0
+
+			home_big_fav_winners = 0
+			home_big_fav_losers = 0
+
+			home_big_dog_winners = 0
+			home_big_dog_losers = 0
+
+			road_low_fav_winners = 0
+			road_low_fav_losers = 0
+
+			road_low_dog_winners = 0
+			road_low_dog_losers = 0
+
+			road_mid_fav_winners = 0
+			road_mid_fav_losers = 0
+
+			road_mid_dog_winners = 0
+			road_mid_dog_losers = 0
+
+			road_big_fav_winners = 0
+			road_big_fav_losers = 0
+
+			road_big_dog_winners = 0
+			road_big_dog_losers = 0
+
+			low_spread_winners = 0
+			low_spread_losers = 0
+
+			mid_spread_winners = 0
+			mid_spread_losers = 0
+
+			big_spread_winners = 0
+			big_spread_losers = 0
+
 			u.selections.each do |s|
 
 				if s.sport == "NFL"
@@ -70,10 +121,13 @@ module TagsHelper
 			user_obj[:sides_prcnt] = user_obj[:sides_prcnt].to_s + "%" 
 
 			user_obj[:totals_prcnt] = (total_winners.to_f / (total_winners.to_f + total_losers.to_f)).round(2) 
-			user_obj[:totals_prcnt] = user_obj[:totals_prcnt].to_s + "%" 
+			user_obj[:totals_prcnt] = user_obj[:totals_prcnt].to_s + "%"
+
+			@all_nfl.push(user_obj) 
 
 		end
 
 
 	end
+
 end
