@@ -1,3 +1,4 @@
+<%self.get_time%>
 
 <div id = "probes_cont">
 
@@ -48,23 +49,37 @@
 
 </div>
 
-<div style="margin-top: 5%;">
+<div>
+	
+	<% @edit_matchups.each do |e| %>
 
-	<% if current_user.admin == true %>
+		<% @matchup_form = e %>
 
-		<%= form_for @matchup do |m| %>
+		<div style="margin-top: 5%;">
 
-			<div>Home_Score: <%= m.text_field :fav_score %></div>
-			<div>Road_Score: <%= m.text_field :dog_score %></div>
-			<div>Winner: <%= m.text_field :ats_winner %></div>
-			<div>Total Result: <%= m.text_field :total_result %></div>
-			
-			<div><%= m.submit %></div>
-				
+			<% if current_user.admin == true %>
 
-		<% end %>
+				<%= form_for @matchup_form do |m| %>
+
+					<div><%= e.fav.upcase + " SCORE" %> <%= m.text_field :fav_score %></div>
+					<div><%= e.dog.upcase + " SCORE" %><%= m.text_field :dog_score %></div>
+					<div>ATS Winner: <%= m.text_field :ats_winner %></div>
+					<div>Total Result: <%= m.text_field :total_result %></div>
+					
+					<div><%= m.submit %></div>
+						
+
+				<% end %>
+
+
+			<% end %>
+
+		</div>
 
 
 	<% end %>
 
+
+
 </div>
+

@@ -38,6 +38,28 @@ class MatchupsController < ApplicationController
 		@matchup = Matchup.find_by_id(params[:id])
 		@probe = Probe.new
 		@username
+		@edit_matchups = []
+		@my_date
+		@matchup_form
+	  	@date = Time.now.utc
+	  	@date = @date.in_time_zone('Eastern Time (US & Canada)') 
+	  	@day = @date.strftime("%d")
+	  	@month = @date.strftime("%b") 
+	  	@year = @date.strftime("%Y") 
+
+
+		@my_date = @day << " " <<@month << " " <<@year 
+
+		Matchup.all.each do |m|
+
+			if m.ats_winner.length != 0 && m.date != @my_date
+
+				@edit_matchups.push(m)
+
+			end
+
+
+		end
 
 	end
 

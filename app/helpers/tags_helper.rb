@@ -822,7 +822,7 @@ module TagsHelper
 										end
 
 
-									elsif m.spread.to_f > 3.0 && m.spread.to_f <= 7.0
+									elsif m.spread.to_f > 3.0 && m.spread.to_f <= 6.0
 
 										if s.choice == m.ats_winner
 
@@ -1016,7 +1016,7 @@ module TagsHelper
 
 									end
 
-									if m.total.to_f <= 43
+									if m.total.to_f <= 210
 
 										if s.choice == m.total_result
 
@@ -1029,7 +1029,7 @@ module TagsHelper
 										end
 
 
-									elsif m.total.to_f >= 43.5 && m.total.to_f <= 46.5
+									elsif m.total.to_f >= 210.5 && m.total.to_f <= 219.5
 
 										if s.choice == m.total_result
 
