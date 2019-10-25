@@ -52,7 +52,7 @@ class MatchupsController < ApplicationController
 
 		Matchup.all.each do |m|
 
-			if m.ats_winner.length != 0 && m.date != @my_date
+			if m.ats_winner.length == 0 && m.date != @my_date
 
 				@edit_matchups.push(m)
 

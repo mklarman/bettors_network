@@ -1,6 +1,14 @@
 <% self.get_time %>
 <% self.get_nfl_records %>
-<%= @all_nfl %>
+
+<div id="heading">SEARCH THE COMMUNITY.  BUILD YOUR PERSONAL CONSENSUS.</div>
+
+<div id="sec_heading">FOLLOW OR FADE BETTORS FROM THE COMMUNITY.</div>
+<div id="tre_heading">GET THEIR PICKS SENT TO YOUR PERSONAL FEED.</div>
+<div id="four_heading">READ THE RESULTS OF YOUR FADE CONSENSUS AND YOUR FOLLOW CONSENSUS.</div>
+<div id="five_heading">BUILD A CONSENSUS WHERE YOU KNOW THE BETTORS BEING POLLED.</div>
+
+
 
 <div class = "hide">
 	
@@ -16,7 +24,76 @@
 	<% end %>
 
 </div>
+
+<div class="hide">
+	
+
+	<input type="text" name="" id="sport">
+	<input type="text" name="" id="situation">
+	<input type="submit" value="SEARCH" id="tag_sub">
+
+
+
+</div>
+
+<div id="choices">
+	
+	<div id="sport_choices">
+		
+		<div id="sport_label">CHOOSE A SPORT: </div>
+
+		<div id="sport_cont">
+			
+			<div class="the_sports">NFL</div>
+			<div class="the_sports">NBA</div>
+
+		</div>
+
+
+
+	</div>
+
+	<div id="situation_label">CHOOSE A SITUATION:</div>
+
+	<div id="search_situations">
+		
+		<div class="the_situations">ALL</div>
+		<div class="the_situations">HOME</div>
+		<div class="the_situations">ROAD</div>
+		<div class="the_situations">LOW SPREADS</div>
+		<div class="the_situations">MID SPREADS</div>
+		<div class="the_situations">BIG SPREADS</div>
+		<div class="the_situations">HOME SMALL FAV</div>
+		<div class="the_situations">HOME MID FAV</div>
+		<div class="the_situations">HOME BIG FAV</div>
+		<div class="the_situations">HOME SMALL DOG</div>
+		<div class="the_situations">HOME MID DOG</div>
+		<div class="the_situations">HOME BIG DOG</div>
+		<div class="the_situations">ROAD SMALL FAV</div>
+		<div class="the_situations">ROAD MID FAV</div>
+		<div class="the_situations">ROAD BIG FAV</div>
+		<div class="the_situations">ROAD SMALL DOG</div>
+		<div class="the_situations">ROAD MID DOG</div>
+		<div class="the_situations">ROAD BIG DOG</div>
+		<div class="the_situations">ALL TOTALS</div>
+		<div class="the_situations">LOW TOTALS</div>
+		<div class="the_situations">MID TOTALS</div>
+		<div class="the_situations">HIGH TOTALS</div>
+
+
+
+	</div>
+
+
+</div>
+
+
+
 <script>
+
+	let searchSport = document.getElementById("sport")
+	let searchSit = document.getElementById("situation")
+	let tagSub = document.getElementById("tag_sub")
 	
 	let users = []
 	

@@ -25,9 +25,13 @@
 	
 	<% Matchup.all.each do |m| %>
 
-		<% matchup = m.fav + " " + m.spread + " " + m.dog %>
+		<% if m.ats_winner.length == 0 %>
 
-		<div><%= link_to matchup, matchup_path(m.id) %> </div>
+			<% matchup = m.fav + " " + m.spread + " " + m.dog %>
+
+			<div><%= link_to matchup, matchup_path(m.id) %> </div>
+
+		<% end %>
 
 
 	<% end %>

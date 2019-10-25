@@ -136,3 +136,168 @@
 	width: 100%;
 	background: gray;
 }
+
+#input_boxes{
+
+	height: 100%;
+	width: 100%;
+	border: 1px solid red;
+	margin: auto;
+	margin-top: 10%;
+	text-align: center;
+
+
+}
+
+#sport{
+
+
+
+}
+
+#situation{
+
+
+}
+
+#tag_sub{
+
+
+}
+
+#heading{
+
+	height: 100%;
+	width: 100%;
+	font-size: 40px;
+	background: navy;
+	text-align: center;
+	margin-top: 5%;
+	color: white;
+
+}
+
+#sec_heading{
+
+	height: 100%;
+	width: 100%;
+	font-size: 37px;
+	background: green;
+	text-align: center;
+	color: white;
+}
+
+#tre_heading{
+
+	height: 100%;
+	width: 100%;
+	font-size: 34px;
+	background: red;
+	text-align: center;
+	color: white;	
+
+}
+
+#four_heading{
+
+	height: 100%;
+	width: 100%;
+	font-size: 31px;
+	background: purple;
+	text-align: center;
+	color: white;	
+
+}
+
+#five_heading{
+
+	height: 100%;
+	width: 100%;
+	font-size: 28px;
+	background: orange;
+	text-align: center;
+	color: white;	
+
+}
+
+#choices{
+
+	height: 100%;
+	width: 75%;
+	background: gray;
+	color: black;
+	margin: auto;
+	font-size: 25px;
+	margin-top: 5%;
+}
+
+.the_sports{
+
+	display: inline-block;
+	vertical-align: top;
+	font-size: 22px;
+	color: darkgreen;
+	margin-right: 5%;
+	margin-left: 5%;
+
+}
+
+#sport_label{
+
+	height: 100%;
+	width: 100%;
+	display: inline-block;
+	vertical-align: top;
+	font-size: 22px;
+	color: black;
+	text-align: center;
+
+
+}
+
+#sport_cont{
+
+	height: 100%;
+	width: 100%;
+	display: inline-block;
+	vertical-align: top;
+	font-size: 25px;
+	
+	text-align: center;
+	margin-top: 3%;
+}
+
+#search_situations{
+
+	height: 100%;
+	width: 100%;
+
+
+
+}
+
+.the_situations{
+
+	height: 100%;
+	width: 23%;
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 2%;
+	color: darkblue;
+	
+
+}
+
+#situation_label{
+
+	height: 100%;
+	width: 100%;
+	display: inline-block;
+	vertical-align: top;
+	font-size: 22px;
+	color: black;
+	text-align: center;
+	margin-top: 5%;
+
+
+}
