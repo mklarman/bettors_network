@@ -6,11 +6,11 @@
 <div id="sec_heading">FOLLOW OR FADE BETTORS FROM THE COMMUNITY.</div>
 <div id="tre_heading">GET THEIR PICKS SENT TO YOUR PERSONAL FEED.</div>
 <div id="four_heading">READ THE RESULTS OF YOUR FADE CONSENSUS AND YOUR FOLLOW CONSENSUS.</div>
-<div id="five_heading">BUILD A CONSENSUS WHERE YOU KNOW THE BETTORS BEING POLLED.</div>
+<div id="five_heading">BUILD A CONSENSUS WHERE YOU KNOW THE BETTORS OFFERING THE OPINIONS.</div>
 
 
 
-<div class = "hide">
+<div class = "hid">
 	
 	<%= form_for @tag do |t| %>
 		
@@ -44,8 +44,8 @@
 
 		<div id="sport_cont">
 			
-			<div class="the_sports">NFL</div>
-			<div class="the_sports">NBA</div>
+			<div class="the_sports" id="nfl_sport">NFL</div>
+			<div class="the_sports" id="nba_sport">NBA</div>
 
 		</div>
 
@@ -57,28 +57,28 @@
 
 	<div id="search_situations">
 		
-		<div class="the_situations">ALL</div>
-		<div class="the_situations">HOME</div>
-		<div class="the_situations">ROAD</div>
-		<div class="the_situations">LOW SPREADS</div>
-		<div class="the_situations">MID SPREADS</div>
-		<div class="the_situations">BIG SPREADS</div>
-		<div class="the_situations">HOME SMALL FAV</div>
-		<div class="the_situations">HOME MID FAV</div>
-		<div class="the_situations">HOME BIG FAV</div>
-		<div class="the_situations">HOME SMALL DOG</div>
-		<div class="the_situations">HOME MID DOG</div>
-		<div class="the_situations">HOME BIG DOG</div>
-		<div class="the_situations">ROAD SMALL FAV</div>
-		<div class="the_situations">ROAD MID FAV</div>
-		<div class="the_situations">ROAD BIG FAV</div>
-		<div class="the_situations">ROAD SMALL DOG</div>
-		<div class="the_situations">ROAD MID DOG</div>
-		<div class="the_situations">ROAD BIG DOG</div>
-		<div class="the_situations">ALL TOTALS</div>
-		<div class="the_situations">LOW TOTALS</div>
-		<div class="the_situations">MID TOTALS</div>
-		<div class="the_situations">HIGH TOTALS</div>
+		<div class="the_situations" id="all_sit">ALL</div>
+		<div class="the_situations" id="home_sit">HOME</div>
+		<div class="the_situations" id="road_sit">ROAD</div>
+		<div class="the_situations" id="low_sit">LOW SPREADS</div>
+		<div class="the_situations" id="mid_sit">MID SPREADS</div>
+		<div class="the_situations" id="big_sit">BIG SPREADS</div>
+		<div class="the_situations" id="hsf_sit">HOME SMALL FAV</div>
+		<div class="the_situations" id="hmf_sit">HOME MID FAV</div>
+		<div class="the_situations" id="hbf_sit">HOME BIG FAV</div>
+		<div class="the_situations" id="hsd_sit">HOME SMALL DOG</div>
+		<div class="the_situations" id="hmd_sit">HOME MID DOG</div>
+		<div class="the_situations" id="hbd_sit">HOME BIG DOG</div>
+		<div class="the_situations" id="rsf_sit">ROAD SMALL FAV</div>
+		<div class="the_situations" id="rmf_sit">ROAD MID FAV</div>
+		<div class="the_situations" id="rbf_sit">ROAD BIG FAV</div>
+		<div class="the_situations" id="rsd_sit">ROAD SMALL DOG</div>
+		<div class="the_situations" id="rmd_sit">ROAD MID DOG</div>
+		<div class="the_situations" id="rbd_sit">ROAD BIG DOG</div>
+		<div class="the_situations" id="alltot_sit">ALL TOTALS</div>
+		<div class="the_situations" id="lowtot_sit">LOW TOTALS</div>
+		<div class="the_situations" id="midtot_sit">MID TOTALS</div>
+		<div class="the_situations" id="bigtot_sit">HIGH TOTALS</div>
 
 
 
@@ -91,11 +91,67 @@
 
 <script>
 
+	let theSports = document.getElementsByClassName("the_sports")
+	let theSits = document.getElementsByClassName("the_situations")
+
 	let searchSport = document.getElementById("sport")
 	let searchSit = document.getElementById("situation")
 	let tagSub = document.getElementById("tag_sub")
 	
 	let users = []
+
+	for (let i=0; i<theSports.length; i++){
+
+		theSports[i].addEventListener("click", function(){
+
+			tag_sport.value = theSports[i].innerHTML
+			nfl_sport.style.color = "darkgreen"
+			nba_sport.style.color = "darkgreen"
+			
+			theSports[i].style.color = "blue"
+
+
+			
+
+		}, false)
+	}
+
+	for (let i=0; i<theSits.length; i++){
+
+		theSits[i].addEventListener("click", function(){
+
+			tag_situation.value = theSits[i].innerHTML
+			all_sit.style.color = "darkblue"
+			home_sit.style.color = "darkblue"
+			road_sit.style.color = "darkblue"
+			low_sit.style.color = "darkblue"
+			mid_sit.style.color = "darkblue"
+			big_sit.style.color = "darkblue"
+			hsf_sit.style.color = "darkblue"
+			hmf_sit.style.color = "darkblue"
+			hbf_sit.style.color = "darkblue"
+			hsd_sit.style.color = "darkblue"
+			hmd_sit.style.color = "darkblue"
+			hbd_sit.style.color = "darkblue"
+			rsf_sit.style.color = "darkblue"
+			rmf_sit.style.color = "darkblue"
+			rbf_sit.style.color = "darkblue"
+			rsd_sit.style.color = "darkblue"
+			rmd_sit.style.color = "darkblue"
+			rbd_sit.style.color = "darkblue"
+			alltot_sit.style.color = "darkblue"
+			lowtot_sit.style.color = "darkblue"
+			midtot_sit.style.color = "darkblue"
+			bigtot_sit.style.color = "darkblue"
+			
+			
+			theSits[i].style.color = "red"
+
+
+			
+
+		}, false)
+	}
 	
 </script>
 
