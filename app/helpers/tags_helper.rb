@@ -492,6 +492,7 @@ module TagsHelper
 			user_obj[:sides_rec] = side_winners.to_s + " - " + side_losers.to_s 
 			user_obj[:sides_prcnt] = (side_winners.to_f / (side_winners.to_f + side_losers.to_f)).round(2) 
 			user_obj[:sides_prcnt] = user_obj[:sides_prcnt].to_s + "%" 
+			user_obj[:total_rec] = total_winners.to_s + " - " + total_losers.to_s
 
 			user_obj[:totals_prcnt] = (total_winners.to_f / (total_winners.to_f + total_losers.to_f)).round(2) 
 			user_obj[:totals_prcnt] = user_obj[:totals_prcnt].to_s + "%"
@@ -1071,6 +1072,8 @@ module TagsHelper
 			user_obj[:user_id] = u.id
 			user_obj[:side_selections] = side_winners + side_losers 
 			user_obj[:total_selections] = total_winners + total_losers 
+			user_obj[:all_record] = (total_winners + side_winners).to_s + " - " (side_losers + total_losers).to_s 
+			user_obj[:all_prcnt] = (((total_winners + side_winners ) / (side_losers + total_losers)).round(2)).to_s + "%" 
 			user_obj[:all_selections] = total_winners + total_losers + side_losers + side_winners
 			user_obj[:sides_rec] = side_winners.to_s + " - " + side_losers.to_s 
 			user_obj[:sides_prcnt] = (side_winners.to_f / (side_winners.to_f + side_losers.to_f)).round(2) 
@@ -1160,6 +1163,2224 @@ module TagsHelper
 			user_obj[:big_total_prcnt] = user_obj[:big_total_prcnt].to_s + "%"
 
 			@all_nba.push(user_obj) 
+
+		end
+
+	end
+
+	def pull_stats (stats, sport, situation)
+
+		@stat_holder = []
+		num_holder = []
+
+		if sport == "NFL"
+
+			if situation == "ALL"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:all_record]
+					info[:all_prcnt] = n[:all_prcnt]
+
+					num_holder.push(n[:all_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:all_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:all_prcnt]
+							ordered_stat[:rec] = s[:all_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+
+			elsif situation == "HOME"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_record]
+					info[:all_prcnt] = n[:home_prcnt]
+
+					num_holder.push(n[:home_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_prcnt]
+							ordered_stat[:rec] = s[:home_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ROAD"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_record]
+					info[:all_prcnt] = n[:road_prcnt]
+
+					num_holder.push(n[:road_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_prcnt]
+							ordered_stat[:rec] = s[:road_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "LOW SPREAD"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:low_spread_record]
+					info[:all_prcnt] = n[:low_spread_prcnt]
+
+					num_holder.push(n[:low_spread_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:low_spread_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:low_spread_prcnt]
+							ordered_stat[:rec] = s[:low_spread_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "MID SPREAD"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:mid_spread_record]
+					info[:all_prcnt] = n[:mid_spread_prcnt]
+
+					num_holder.push(n[:mid_spread_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:mid_spread_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:mid_spread_prcnt]
+							ordered_stat[:rec] = s[:mid_spread_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "BIG SPREAD"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:big_spread_record]
+					info[:all_prcnt] = n[:big_spread_prcnt]
+
+					num_holder.push(n[:big_spread_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:big_spread_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:big_spread_prcnt]
+							ordered_stat[:rec] = s[:big_spread_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HOME SMALL FAV"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_low_fav_record]
+					info[:all_prcnt] = n[:home_low_fav_prcnt]
+
+					num_holder.push(n[:home_low_fav_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_low_fav_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_low_fav_prcnt]
+							ordered_stat[:rec] = s[:home_low_fav_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HOME MID FAV"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_mid_fav_record]
+					info[:all_prcnt] = n[:home_mid_fav_prcnt]
+
+					num_holder.push(n[:home_mid_fav_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_mid_fav_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_mid_fav_prcnt]
+							ordered_stat[:rec] = s[:home_mid_fav_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HOME BIG FAV"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_big_fav_record]
+					info[:all_prcnt] = n[:home_big_fav_prcnt]
+
+					num_holder.push(n[:home_big_fav_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_big_fav_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_big_fav_prcnt]
+							ordered_stat[:rec] = s[:home_big_fav_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HOME BIG DOG"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_big_dog_record]
+					info[:all_prcnt] = n[:home_big_dog_prcnt]
+
+					num_holder.push(n[:home_big_dog_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_big_dog_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_big_dog_prcnt]
+							ordered_stat[:rec] = s[:home_big_dog_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HOME MID DOG"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_mid_dog_record]
+					info[:all_prcnt] = n[:home_mid_dog_prcnt]
+
+					num_holder.push(n[:home_mid_dog_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_mid_dog_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_mid_dog_prcnt]
+							ordered_stat[:rec] = s[:home_mid_dog_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HOME SMALL DOG"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_low_dog_record]
+					info[:all_prcnt] = n[:home_low_dog_prcnt]
+
+					num_holder.push(n[:home_low_dog_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_low_dog_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_low_dog_prcnt]
+							ordered_stat[:rec] = s[:home_low_dog_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+
+			elsif situation == "ROAD SMALL FAV"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_low_fav_record]
+					info[:all_prcnt] = n[:road_low_fav_prcnt]
+
+					num_holder.push(n[:road_low_fav_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_low_fav_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_low_fav_prcnt]
+							ordered_stat[:rec] = s[:road_low_fav_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ROAD MID FAV"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_mid_fav_record]
+					info[:all_prcnt] = n[:road_mid_fav_prcnt]
+
+					num_holder.push(n[:road_mid_fav_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_mid_fav_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_mid_fav_prcnt]
+							ordered_stat[:rec] = s[:road_mid_fav_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ROAD BIG FAV"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_big_fav_record]
+					info[:all_prcnt] = n[:road_big_fav_prcnt]
+
+					num_holder.push(n[:road_big_fav_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_big_fav_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_big_fav_prcnt]
+							ordered_stat[:rec] = s[:road_big_fav_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ROAD BIG DOG"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_big_dog_record]
+					info[:all_prcnt] = n[:road_big_dog_prcnt]
+
+					num_holder.push(n[:road_big_dog_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_big_dog_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_big_dog_prcnt]
+							ordered_stat[:rec] = s[:road_big_dog_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ROAD MID DOG"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_mid_dog_record]
+					info[:all_prcnt] = n[:road_mid_dog_prcnt]
+
+					num_holder.push(n[:road_mid_dog_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_mid_dog_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_mid_dog_prcnt]
+							ordered_stat[:rec] = s[:road_mid_dog_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ROAD SMALL DOG"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_low_dog_record]
+					info[:all_prcnt] = n[:road_low_dog_prcnt]
+
+					num_holder.push(n[:road_low_dog_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_low_dog_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_low_dog_prcnt]
+							ordered_stat[:rec] = s[:road_low_dog_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "LOW TOTALS"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:low_total_record]
+					info[:all_prcnt] = n[:low_total_prcnt]
+
+					num_holder.push(n[:low_total_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:low_total_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:low_total_prcnt]
+							ordered_stat[:rec] = s[:low_total_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "MID TOTALS"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:mid_total_record]
+					info[:all_prcnt] = n[:mid_total_prcnt]
+
+					num_holder.push(n[:mid_total_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:mid_total_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:mid_total_prcnt]
+							ordered_stat[:rec] = s[:mid_total_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HIGH TOTALS"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:big_total_record]
+					info[:all_prcnt] = n[:big_total_prcnt]
+
+					num_holder.push(n[:big_total_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:big_total_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:big_total_prcnt]
+							ordered_stat[:rec] = s[:big_total_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ALL TOTALS"
+
+				@all_nfl.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:total_rec]
+					info[:all_prcnt] = n[:totals_prcnt]
+
+					num_holder.push(n[:totals_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:totals_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:totals_prcnt]
+							ordered_stat[:rec] = s[:total_rec]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+
+			end
+
+
+		elsif sport == "NBA"
+
+			if situation == "ALL"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:all_record]
+					info[:all_prcnt] = n[:all_prcnt]
+
+					num_holder.push(n[:all_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:all_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:all_prcnt]
+							ordered_stat[:rec] = s[:all_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+
+			elsif situation == "HOME"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_record]
+					info[:all_prcnt] = n[:home_prcnt]
+
+					num_holder.push(n[:home_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_prcnt]
+							ordered_stat[:rec] = s[:home_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ROAD"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_record]
+					info[:all_prcnt] = n[:road_prcnt]
+
+					num_holder.push(n[:road_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_prcnt]
+							ordered_stat[:rec] = s[:road_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "LOW SPREAD"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:low_spread_record]
+					info[:all_prcnt] = n[:low_spread_prcnt]
+
+					num_holder.push(n[:low_spread_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:low_spread_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:low_spread_prcnt]
+							ordered_stat[:rec] = s[:low_spread_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "MID SPREAD"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:mid_spread_record]
+					info[:all_prcnt] = n[:mid_spread_prcnt]
+
+					num_holder.push(n[:mid_spread_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:mid_spread_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:mid_spread_prcnt]
+							ordered_stat[:rec] = s[:mid_spread_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "BIG SPREAD"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:big_spread_record]
+					info[:all_prcnt] = n[:big_spread_prcnt]
+
+					num_holder.push(n[:big_spread_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:big_spread_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:big_spread_prcnt]
+							ordered_stat[:rec] = s[:big_spread_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HOME SMALL FAV"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_low_fav_record]
+					info[:all_prcnt] = n[:home_low_fav_prcnt]
+
+					num_holder.push(n[:home_low_fav_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_low_fav_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_low_fav_prcnt]
+							ordered_stat[:rec] = s[:home_low_fav_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HOME MID FAV"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_mid_fav_record]
+					info[:all_prcnt] = n[:home_mid_fav_prcnt]
+
+					num_holder.push(n[:home_mid_fav_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_mid_fav_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_mid_fav_prcnt]
+							ordered_stat[:rec] = s[:home_mid_fav_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HOME BIG FAV"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_big_fav_record]
+					info[:all_prcnt] = n[:home_big_fav_prcnt]
+
+					num_holder.push(n[:home_big_fav_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_big_fav_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_big_fav_prcnt]
+							ordered_stat[:rec] = s[:home_big_fav_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HOME BIG DOG"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_big_dog_record]
+					info[:all_prcnt] = n[:home_big_dog_prcnt]
+
+					num_holder.push(n[:home_big_dog_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_big_dog_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_big_dog_prcnt]
+							ordered_stat[:rec] = s[:home_big_dog_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HOME MID DOG"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_mid_dog_record]
+					info[:all_prcnt] = n[:home_mid_dog_prcnt]
+
+					num_holder.push(n[:home_mid_dog_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_mid_dog_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_mid_dog_prcnt]
+							ordered_stat[:rec] = s[:home_mid_dog_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HOME SMALL DOG"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:home_low_dog_record]
+					info[:all_prcnt] = n[:home_low_dog_prcnt]
+
+					num_holder.push(n[:home_low_dog_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:home_low_dog_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:home_low_dog_prcnt]
+							ordered_stat[:rec] = s[:home_low_dog_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+
+			elsif situation == "ROAD SMALL FAV"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_low_fav_record]
+					info[:all_prcnt] = n[:road_low_fav_prcnt]
+
+					num_holder.push(n[:road_low_fav_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_low_fav_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_low_fav_prcnt]
+							ordered_stat[:rec] = s[:road_low_fav_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ROAD MID FAV"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_mid_fav_record]
+					info[:all_prcnt] = n[:road_mid_fav_prcnt]
+
+					num_holder.push(n[:road_mid_fav_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_mid_fav_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_mid_fav_prcnt]
+							ordered_stat[:rec] = s[:road_mid_fav_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ROAD BIG FAV"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_big_fav_record]
+					info[:all_prcnt] = n[:road_big_fav_prcnt]
+
+					num_holder.push(n[:road_big_fav_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_big_fav_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_big_fav_prcnt]
+							ordered_stat[:rec] = s[:road_big_fav_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ROAD BIG DOG"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_big_dog_record]
+					info[:all_prcnt] = n[:road_big_dog_prcnt]
+
+					num_holder.push(n[:road_big_dog_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_big_dog_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_big_dog_prcnt]
+							ordered_stat[:rec] = s[:road_big_dog_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ROAD MID DOG"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_mid_dog_record]
+					info[:all_prcnt] = n[:road_mid_dog_prcnt]
+
+					num_holder.push(n[:road_mid_dog_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_mid_dog_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_mid_dog_prcnt]
+							ordered_stat[:rec] = s[:road_mid_dog_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ROAD SMALL DOG"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:road_low_dog_record]
+					info[:all_prcnt] = n[:road_low_dog_prcnt]
+
+					num_holder.push(n[:road_low_dog_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:road_low_dog_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:road_low_dog_prcnt]
+							ordered_stat[:rec] = s[:road_low_dog_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "LOW TOTALS"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:low_total_record]
+					info[:all_prcnt] = n[:low_total_prcnt]
+
+					num_holder.push(n[:low_total_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:low_total_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:low_total_prcnt]
+							ordered_stat[:rec] = s[:low_total_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "MID TOTALS"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:mid_total_record]
+					info[:all_prcnt] = n[:mid_total_prcnt]
+
+					num_holder.push(n[:mid_total_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:mid_total_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:mid_total_prcnt]
+							ordered_stat[:rec] = s[:mid_total_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "HIGH TOTALS"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:big_total_record]
+					info[:all_prcnt] = n[:big_total_prcnt]
+
+					num_holder.push(n[:big_total_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:big_total_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:big_total_prcnt]
+							ordered_stat[:rec] = s[:big_total_record]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+			
+			elsif situation == "ALL TOTALS"
+
+				@all_nba.each do |n|
+
+					info = Hash.new
+
+					info[:user_id] = n[:user_id]
+					info[:all_rec] = n[:total_rec]
+					info[:all_prcnt] = n[:totals_prcnt]
+
+					num_holder.push(n[:totals_prcnt].to_f)
+
+				end
+
+				num_holder = num_holder.sort
+				num_holder = num_holder.reverse
+
+				num_holder.each do |num|
+
+					stats.each do |s|
+
+						if num == s[:totals_prcnt].to_f
+
+							username = " "
+
+							User.all.each do |u|
+
+								if u.id == s[:user_id].to_i
+
+									username = u.username
+
+								end
+
+							end
+
+							ordered_stat = Hash.new
+
+							ordered_stat[:username] = username
+							ordered_stat[:stat] = s[:totals_prcnt]
+							ordered_stat[:rec] = s[:total_rec]
+
+							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
+
+						end
+
+					end
+
+
+				end
+
+			end
 
 		end
 

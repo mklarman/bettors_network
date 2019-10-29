@@ -25,12 +25,14 @@
 
 </div>
 
+
+
 <div class="hide">
 	
 
 	<input type="text" name="" id="sport">
 	<input type="text" name="" id="situation">
-	<input type="submit" value="SEARCH" id="tag_sub">
+	
 
 
 
@@ -84,6 +86,8 @@
 
 	</div>
 
+	<div id="search_btn"><input type="submit" value="SEARCH" id="tag_sub"></div>
+
 
 </div>
 
@@ -96,7 +100,7 @@
 
 	let searchSport = document.getElementById("sport")
 	let searchSit = document.getElementById("situation")
-	let tagSub = document.getElementById("tag_sub")
+	let searchSub = document.getElementById("tag_sub")
 	
 	let users = []
 
@@ -148,10 +152,30 @@
 			theSits[i].style.color = "red"
 
 
+
 			
 
 		}, false)
 	}
+
+	searchSub.addEventListener("click", function(){
+
+		if(tag_sport.value.length != 0 && tag_situation.value.length != 0){
+
+			if (tag_sport.value == "NFL"){
+
+				if (tag_situation.value == "ALL"){
+
+					
+				}
+			}
+
+		}
+
+
+	})
+
+
 	
 </script>
 

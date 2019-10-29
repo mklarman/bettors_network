@@ -35,6 +35,7 @@ class TagsController < ApplicationController
 		@my_date
 		@all_nfl = []
 		@all_nba = []
+		@stat_holder
 
 	end
 
