@@ -166,7 +166,91 @@
 
 				if (tag_situation.value == "ALL"){
 
-					
+					<% self.pull_stats(@all_nfl, "NFL", "ALL") %>
+
+
+				}else if(tag_situation.value == "HOME"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "HOME") %>
+
+				}else if(tag_situation.value == "ROAD"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "ROAD") %>
+
+				}else if(tag_situation.value == "LOW SPREADS"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "LOW SPREADS") %>
+				
+				}else if(tag_situation.value == "MID SPREADS"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "MID SPREADS") %>
+				
+				}else if(tag_situation.value == "BIG SPREADS"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "BIG SPREADS") %>
+				
+				}else if(tag_situation.value == "HOME SMALL FAV"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "HOME SMALL FAV") %>
+				
+				}else if(tag_situation.value == "HOME MID FAV"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "HOME MID FAV") %>
+				
+				}else if(tag_situation.value == "HOME BIG FAV"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "HOME BIG FAV") %>
+				
+				}else if(tag_situation.value == "HOME BIG DOG"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "HOME BIG DOG") %>
+				
+				}else if(tag_situation.value == "HOME MID DOG"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "HOME MID DOG") %>
+				
+				}else if(tag_situation.value == "HOME SMALL DOG"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "HOME SMALL DOG") %>
+				
+				}else if(tag_situation.value == "ROAD SMALL FAV"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "ROAD SMALL FAV") %>
+				
+				}else if(tag_situation.value == "ROAD MID FAV"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "ROAD MID FAV") %>
+				
+				}else if(tag_situation.value == "ROAD BIG FAV"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "ROAD BIG FAV") %>
+				
+				}else if(tag_situation.value == "ROAD BIG DOG"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "ROAD BIG DOG") %>
+				
+				}else if(tag_situation.value == "ROAD MID DOG"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "ROAD MID DOG") %>
+				
+				}else if(tag_situation.value == "ROAD SMALL DOG"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "ROAD SMALL DOG") %>
+				}else if(tag_situation.value == "ALL TOTALS"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "ALL TOTALS") %>
+				
+				}else if(tag_situation.value == "LOW TOTALS"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "LOW TOTALS") %>
+				
+				}else if(tag_situation.value == "MID TOTALS"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "MID TOTALS") %>
+				
+				}else if(tag_situation.value == "BIG TOTALS"){
+
+					<% self.pull_stats(@all_nfl, "NFL", "BIG TOTALS") %>
 				}
 			}
 

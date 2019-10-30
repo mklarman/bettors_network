@@ -1072,7 +1072,7 @@ module TagsHelper
 			user_obj[:user_id] = u.id
 			user_obj[:side_selections] = side_winners + side_losers 
 			user_obj[:total_selections] = total_winners + total_losers 
-			user_obj[:all_record] = (total_winners + side_winners).to_s + " - " (side_losers + total_losers).to_s 
+			user_obj[:all_record] = (total_winners + side_winners).to_s + " - " + (side_losers + total_losers).to_s 
 			user_obj[:all_prcnt] = (((total_winners + side_winners ) / (side_losers + total_losers)).round(2)).to_s + "%" 
 			user_obj[:all_selections] = total_winners + total_losers + side_losers + side_winners
 			user_obj[:sides_rec] = side_winners.to_s + " - " + side_losers.to_s 
