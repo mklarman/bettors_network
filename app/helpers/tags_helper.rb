@@ -489,6 +489,8 @@ module TagsHelper
 			user_obj[:side_selections] = side_winners + side_losers 
 			user_obj[:total_selections] = total_winners + total_losers 
 			user_obj[:all_selections] = total_winners + total_losers + side_losers + side_winners
+			user_obj[:all_record] = (total_winners + side_winners).to_s + " - " + (side_losers + total_losers).to_s 
+			user_obj[:all_prcnt] = (((total_winners + side_winners ) / (side_losers + total_losers)).round(2)).to_s + "%" 
 			user_obj[:sides_rec] = side_winners.to_s + " - " + side_losers.to_s 
 			user_obj[:sides_prcnt] = (side_winners.to_f / (side_winners.to_f + side_losers.to_f)).round(2) 
 			user_obj[:sides_prcnt] = user_obj[:sides_prcnt].to_s + "%" 
@@ -1192,11 +1194,12 @@ module TagsHelper
 				num_holder = num_holder.sort
 				num_holder = num_holder.reverse
 
+
 				num_holder.each do |num|
 
 					stats.each do |s|
 
-						if num == s[:all_prcnt].to_f
+						if num.to_f == s[:all_prcnt].to_f
 
 							username = " "
 
@@ -1213,8 +1216,11 @@ module TagsHelper
 							ordered_stat = Hash.new
 
 							ordered_stat[:username] = username
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:stat] = s[:all_prcnt]
 							ordered_stat[:rec] = s[:all_record]
+
+							
 
 							@stat_holder.push(ordered_stat) unless @stat_holder.include?(ordered_stat)
 

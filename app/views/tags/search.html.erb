@@ -1,5 +1,7 @@
 <% self.get_time %>
+<% @test1 %>
 <% self.get_nfl_records %>
+
 
 <div id="heading">SEARCH THE COMMUNITY.  BUILD YOUR PERSONAL CONSENSUS.</div>
 
@@ -103,6 +105,7 @@
 	let searchSub = document.getElementById("tag_sub")
 	
 	let users = []
+	let currentStats = []
 
 	for (let i=0; i<theSports.length; i++){
 
@@ -168,89 +171,396 @@
 
 					<% self.pull_stats(@all_nfl, "NFL", "ALL") %>
 
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+
+
+					<% end %>
 
 				}else if(tag_situation.value == "HOME"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "HOME") %>
 
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
+
 				}else if(tag_situation.value == "ROAD"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "ROAD") %>
 
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
+
 				}else if(tag_situation.value == "LOW SPREADS"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "LOW SPREADS") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "MID SPREADS"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "MID SPREADS") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "BIG SPREADS"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "BIG SPREADS") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "HOME SMALL FAV"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "HOME SMALL FAV") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "HOME MID FAV"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "HOME MID FAV") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "HOME BIG FAV"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "HOME BIG FAV") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "HOME BIG DOG"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "HOME BIG DOG") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "HOME MID DOG"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "HOME MID DOG") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "HOME SMALL DOG"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "HOME SMALL DOG") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "ROAD SMALL FAV"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "ROAD SMALL FAV") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "ROAD MID FAV"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "ROAD MID FAV") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "ROAD BIG FAV"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "ROAD BIG FAV") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "ROAD BIG DOG"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "ROAD BIG DOG") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "ROAD MID DOG"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "ROAD MID DOG") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "ROAD SMALL DOG"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "ROAD SMALL DOG") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				}else if(tag_situation.value == "ALL TOTALS"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "ALL TOTALS") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "LOW TOTALS"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "LOW TOTALS") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "MID TOTALS"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "MID TOTALS") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				
 				}else if(tag_situation.value == "BIG TOTALS"){
 
 					<% self.pull_stats(@all_nfl, "NFL", "BIG TOTALS") %>
+
+					<% @stat_holder.each do |s| %>
+
+						let stats = new Object()
+						stats.user_id = "<%= s[:user_id] %>"
+						stats.username = "<%= s[:username] %>"
+						stats.stat = "<%= s[:stat] %>"
+						stats.rec = "<%= s[:rec] %>"
+
+						currentStats.push(stats)
+
+						
+
+					<% end %>
 				}
 			}
 
@@ -262,6 +572,15 @@
 
 	
 </script>
+
+
+
+
+
+
+
+
+
 
 
 <% @users.each do |u| %>
