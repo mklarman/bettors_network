@@ -97,6 +97,11 @@
 
 <script>
 
+	var followButton;
+	var fadeButton;
+	var stats;
+	let check = []
+
 	let theSports = document.getElementsByClassName("the_sports")
 	let theSits = document.getElementsByClassName("the_situations")
 
@@ -173,7 +178,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -191,7 +196,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -209,7 +214,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -227,7 +232,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -245,7 +250,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -263,7 +268,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -281,7 +286,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -299,7 +304,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -315,7 +320,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -333,7 +338,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -351,7 +356,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -369,7 +374,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -387,7 +392,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -405,7 +410,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -423,7 +428,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -441,7 +446,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -459,7 +464,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -477,7 +482,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -494,7 +499,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -512,7 +517,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -530,7 +535,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -548,7 +553,7 @@
 
 					<% @stat_holder.each do |s| %>
 
-						let stats = new Object()
+						stats = new Object()
 						stats.user_id = "<%= s[:user_id] %>"
 						stats.username = "<%= s[:username] %>"
 						stats.stat = "<%= s[:stat] %>"
@@ -564,14 +569,80 @@
 
 		}
 
+		let idCheck = []
+
+		for(i=0; i<currentStats.length; i++){
+
+			var info = document.createElement("div")
+
+			followButton = document.createElement('input');
+		    followButton.type = 'submit';
+		    followButton.value = "FOLLOW";
+		    followButton.name = currentStats[i].user_id;
+		    check.push(currentStats[i].user_id)
+		    followButton.setAttribute("class", "fo_buttons");
+
+		    fadeButton = document.createElement('input');
+		    fadeButton.type = 'submit';
+		    fadeButton.value = "FADE";
+		    fadeButton.name = currentStats[i].user_id;
+		    fadeButton.setAttribute("class", "fa_buttons");
+		    
+			
+
+			info.innerHTML = currentStats[i].username
+
+			info.appendChild(followButton)
+			info.appendChild(fadeButton)
+			
+			if(idCheck.includes(currentStats[i].user_id) == false){
+
+				document.body.appendChild(info)
+
+			}
+
+			idCheck.push(currentStats[i].user_id)
+
+		}
+
+		console.log(check)
+
+		let foButtons = document.getElementsByClassName("fo_buttons");
+		let faButtons = document.getElementsByClassName("fa_buttons");
+
+		for (let i=0; i<foButtons.length; i++){
+
+			foButtons[i].addEventListener("click", function(){
+
+				tag_tagged.value = foButtons[i].name
+				tag_cat.value = "follow"
+				new_tag.submit()
+
+			}, false)
+		}
+
+		for (let i=0; i<faButtons.length; i++){
+
+			faButtons[i].addEventListener("click", function(){
+
+				tag_tagged.value = faButtons[i].name
+				tag_cat.value = "fade"
+				new_tag.submit()
+
+			}, false)
+		}
+
 
 	})
+	
 
+	
 
 	
 </script>
 
 
+<%= @stat_holder %>
 
 
 
@@ -581,72 +652,6 @@
 
 
 
-<% @users.each do |u| %>
-
-	<script>
-
-		var userObj = new Object()
-
-		userObj.id = "<%= u.id %>"
-		userObj.username = "<%= u.username %>"
-
-		users.push(userObj)
-
-
-	</script>
-
-<% end %>
-
-<script>
-
-	var followButton;
-	var fadeButton;
-	
-	for(i=0; i<users.length; i++){
-
-		var info = document.createElement("div")
-
-		followButton = document.createElement('input');
-	    followButton.type = 'submit';
-	    followButton.value = "FOLLOW";
-	    followButton.name = users[i].id;
-	    followButton.setAttribute("class", "fo_buttons");
-
-	    fadeButton = document.createElement('input');
-	    fadeButton.type = 'submit';
-	    fadeButton.value = "FADE";
-	    fadeButton.name = users[i].id
-	    fadeButton.setAttribute("class", "fa_buttons");
-	    
-		
-
-		info.innerHTML = users[i].username 
-
-		info.appendChild(followButton)
-		info.appendChild(fadeButton)
-		
-
-		document.body.appendChild(info)
-	}
-
-	var foButtons = document.getElementsByClassName("fo_buttons");
-	var faButtons = document.getElementsByClassName("fa_buttons");
-
-	for (let i=0; i<foButtons.length; i++){
-
-		foButtons[i].addEventListener("click", function(){
-
-			tag_tagged.value = foButtons[i].name
-			tag_cat.value = "follow"
-			tag_sport.value = "NFL"
-			tag_situation.value = "home dog under 3"
-			new_tag.submit()
-
-		}, false)
-	}
-
-
-</script>
 
 
 

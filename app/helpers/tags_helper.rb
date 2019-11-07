@@ -485,23 +485,50 @@ module TagsHelper
 
 			user_obj = Hash.new
 
+
+
 			user_obj[:user_id] = u.id
 			user_obj[:side_selections] = side_winners + side_losers 
 			user_obj[:total_selections] = total_winners + total_losers 
 			user_obj[:all_selections] = total_winners + total_losers + side_losers + side_winners
-			user_obj[:all_record] = (total_winners + side_winners).to_s + " - " + (side_losers + total_losers).to_s 
-			user_obj[:all_prcnt] = (((total_winners + side_winners ) / (side_losers + total_losers)).round(2)).to_s + "%" 
-			user_obj[:sides_rec] = side_winners.to_s + " - " + side_losers.to_s 
-			user_obj[:sides_prcnt] = (side_winners.to_f / (side_winners.to_f + side_losers.to_f)).round(2) 
-			user_obj[:sides_prcnt] = user_obj[:sides_prcnt].to_s + "%" 
+			user_obj[:all_record] = (total_winners + side_winners).to_s + " - " + (side_losers + total_losers).to_s
+			user_obj[:sides_rec] = side_winners.to_s + " - " + side_losers.to_s
+			user_obj[:home_record] = home_winners.to_s + " - " + home_losers.to_s 
+
+			if (side_winners != 0 && side_losers != 0)
+
+				user_obj[:sides_prcnt] = (side_winners.to_f / (side_winners.to_f + side_losers.to_f)).round(2)
+				user_obj[:sides_prcnt] = user_obj[:sides_prcnt].to_s + "%"
+				user_obj[:all_prcnt] = (((total_winners + side_winners ) / (side_losers + total_losers)).round(2)).to_s + "%"
+
+				if (home_winners != 0 && home_losers != 0)
+
+					user_obj[:home_record] = home_winners.to_s + " - " + home_losers.to_s
+					user_obj[:home_prcnt] = (home_winners.to_f / (home_winners.to_f + home_losers.to_f)).round(2)
+					user_obj[:home_prcnt] = user_obj[:home_prcnt].to_s + "%"
+				end
+
+				if (road_winners != 0 && road_losers != 0)
+
+					user_obj[:home_record] = home_winners.to_s + " - " + home_losers.to_s
+					user_obj[:home_prcnt] = (home_winners.to_f / (home_winners.to_f + home_losers.to_f)).round(2)
+					user_obj[:home_prcnt] = user_obj[:home_prcnt].to_s + "%"
+
+				end
+
+
+			end 
+			 
+			
+			 
+			 
 			user_obj[:total_rec] = total_winners.to_s + " - " + total_losers.to_s
 
 			user_obj[:totals_prcnt] = (total_winners.to_f / (total_winners.to_f + total_losers.to_f)).round(2) 
 			user_obj[:totals_prcnt] = user_obj[:totals_prcnt].to_s + "%"
 			
-			user_obj[:home_record] = home_winners.to_s + " - " + home_losers.to_s
-			user_obj[:home_prcnt] = (home_winners.to_f / (home_winners.to_f + home_losers.to_f)).round(2)
-			user_obj[:home_prcnt] = user_obj[:home_prcnt].to_s + "%"
+			
+			
 
 			user_obj[:road_record] = road_winners.to_s + " - " + road_losers.to_s
 			user_obj[:road_prcnt] = (road_winners.to_f / (road_winners.to_f + road_losers.to_f)).round(2)
