@@ -90,8 +90,12 @@
 
 	<div id="search_btn"><input type="submit" value="SEARCH" id="tag_sub"></div>
 
+	
+
 
 </div>
+
+<div id="user_list"></div>
 
 
 
@@ -168,7 +172,11 @@
 
 	searchSub.addEventListener("click", function(){
 
+		currentStats = []
+
 		if(tag_sport.value.length != 0 && tag_situation.value.length != 0){
+
+
 
 			if (tag_sport.value == "NFL"){
 
@@ -567,6 +575,11 @@
 				}
 			}
 
+			while (user_list.firstChild) {
+    			
+    			user_list.removeChild(user_list.firstChild);
+			}
+
 		}
 
 		let idCheck = []
@@ -579,7 +592,12 @@
 		    followButton.type = 'submit';
 		    followButton.value = "FOLLOW";
 		    followButton.name = currentStats[i].user_id;
-		    check.push(currentStats[i].user_id)
+		    if (check.indexOf(currentStats[i].user_id) === -1){
+
+		    	check.push(currentStats[i].user_id)
+
+		    }
+		    
 		    followButton.setAttribute("class", "fo_buttons");
 
 		    fadeButton = document.createElement('input');
@@ -597,7 +615,7 @@
 			
 			if(idCheck.includes(currentStats[i].user_id) == false){
 
-				document.body.appendChild(info)
+				user_list.appendChild(info)
 
 			}
 
@@ -642,7 +660,7 @@
 </script>
 
 
-<%= @stat_holder %>
+
 
 
 
