@@ -1296,6 +1296,7 @@ module TagsHelper
 							ordered_stat = Hash.new
 
 							ordered_stat[:username] = username
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:stat] = s[:home_prcnt]
 							ordered_stat[:rec] = s[:home_record]
 
@@ -1345,6 +1346,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_prcnt]
 							ordered_stat[:rec] = s[:road_record]
@@ -1395,6 +1397,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:low_spread_prcnt]
 							ordered_stat[:rec] = s[:low_spread_record]
@@ -1445,6 +1448,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:mid_spread_prcnt]
 							ordered_stat[:rec] = s[:mid_spread_record]
@@ -1495,6 +1499,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:big_spread_prcnt]
 							ordered_stat[:rec] = s[:big_spread_record]
@@ -1545,6 +1550,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_low_fav_prcnt]
 							ordered_stat[:rec] = s[:home_low_fav_record]
@@ -1595,6 +1601,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_mid_fav_prcnt]
 							ordered_stat[:rec] = s[:home_mid_fav_record]
@@ -1645,6 +1652,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_big_fav_prcnt]
 							ordered_stat[:rec] = s[:home_big_fav_record]
@@ -1695,6 +1703,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_big_dog_prcnt]
 							ordered_stat[:rec] = s[:home_big_dog_record]
@@ -1745,6 +1754,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_mid_dog_prcnt]
 							ordered_stat[:rec] = s[:home_mid_dog_record]
@@ -1795,6 +1805,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_low_dog_prcnt]
 							ordered_stat[:rec] = s[:home_low_dog_record]
@@ -1845,6 +1856,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_low_fav_prcnt]
 							ordered_stat[:rec] = s[:road_low_fav_record]
@@ -1895,6 +1907,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_mid_fav_prcnt]
 							ordered_stat[:rec] = s[:road_mid_fav_record]
@@ -1945,6 +1958,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_big_fav_prcnt]
 							ordered_stat[:rec] = s[:road_big_fav_record]
@@ -1995,6 +2009,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_big_dog_prcnt]
 							ordered_stat[:rec] = s[:road_big_dog_record]
@@ -2045,6 +2060,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_mid_dog_prcnt]
 							ordered_stat[:rec] = s[:road_mid_dog_record]
@@ -2095,6 +2111,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_low_dog_prcnt]
 							ordered_stat[:rec] = s[:road_low_dog_record]
@@ -2145,6 +2162,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:low_total_prcnt]
 							ordered_stat[:rec] = s[:low_total_record]
@@ -2195,6 +2213,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:mid_total_prcnt]
 							ordered_stat[:rec] = s[:mid_total_record]
@@ -2245,6 +2264,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:big_total_prcnt]
 							ordered_stat[:rec] = s[:big_total_record]
@@ -2295,6 +2315,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:totals_prcnt]
 							ordered_stat[:rec] = s[:total_rec]
@@ -2350,6 +2371,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:all_prcnt]
 							ordered_stat[:rec] = s[:all_record]
@@ -2400,6 +2422,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_prcnt]
 							ordered_stat[:rec] = s[:home_record]
@@ -2450,6 +2473,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_prcnt]
 							ordered_stat[:rec] = s[:road_record]
@@ -2500,6 +2524,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:low_spread_prcnt]
 							ordered_stat[:rec] = s[:low_spread_record]
@@ -2550,6 +2575,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:mid_spread_prcnt]
 							ordered_stat[:rec] = s[:mid_spread_record]
@@ -2600,6 +2626,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:big_spread_prcnt]
 							ordered_stat[:rec] = s[:big_spread_record]
@@ -2650,6 +2677,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_low_fav_prcnt]
 							ordered_stat[:rec] = s[:home_low_fav_record]
@@ -2700,6 +2728,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_mid_fav_prcnt]
 							ordered_stat[:rec] = s[:home_mid_fav_record]
@@ -2750,6 +2779,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_big_fav_prcnt]
 							ordered_stat[:rec] = s[:home_big_fav_record]
@@ -2800,6 +2830,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_big_dog_prcnt]
 							ordered_stat[:rec] = s[:home_big_dog_record]
@@ -2850,6 +2881,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_mid_dog_prcnt]
 							ordered_stat[:rec] = s[:home_mid_dog_record]
@@ -2900,6 +2932,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:home_low_dog_prcnt]
 							ordered_stat[:rec] = s[:home_low_dog_record]
@@ -2950,6 +2983,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_low_fav_prcnt]
 							ordered_stat[:rec] = s[:road_low_fav_record]
@@ -3000,6 +3034,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_mid_fav_prcnt]
 							ordered_stat[:rec] = s[:road_mid_fav_record]
@@ -3050,6 +3085,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_big_fav_prcnt]
 							ordered_stat[:rec] = s[:road_big_fav_record]
@@ -3100,6 +3136,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_big_dog_prcnt]
 							ordered_stat[:rec] = s[:road_big_dog_record]
@@ -3150,6 +3187,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_mid_dog_prcnt]
 							ordered_stat[:rec] = s[:road_mid_dog_record]
@@ -3200,6 +3238,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:road_low_dog_prcnt]
 							ordered_stat[:rec] = s[:road_low_dog_record]
@@ -3250,6 +3289,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:low_total_prcnt]
 							ordered_stat[:rec] = s[:low_total_record]
@@ -3300,6 +3340,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:mid_total_prcnt]
 							ordered_stat[:rec] = s[:mid_total_record]
@@ -3350,6 +3391,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:big_total_prcnt]
 							ordered_stat[:rec] = s[:big_total_record]
@@ -3400,6 +3442,7 @@ module TagsHelper
 
 							ordered_stat = Hash.new
 
+							ordered_stat[:user_id] = s[:user_id]
 							ordered_stat[:username] = username
 							ordered_stat[:stat] = s[:totals_prcnt]
 							ordered_stat[:rec] = s[:total_rec]

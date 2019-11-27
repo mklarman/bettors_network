@@ -2,6 +2,8 @@
 <% @test1 %>
 <% self.get_nfl_records %>
 
+<% @test %>
+
 
 <div id="heading">SEARCH THE COMMUNITY.  BUILD YOUR PERSONAL CONSENSUS.</div>
 
@@ -202,6 +204,8 @@
 
 					<% self.pull_stats(@all_nfl, "NFL", "HOME") %>
 
+					<% @test = @stat_holder %>
+
 					<% @stat_holder.each do |s| %>
 
 						stats = new Object()
@@ -211,8 +215,7 @@
 						stats.rec = "<%= s[:rec] %>"
 
 						currentStats.push(stats)
-
-						
+						console.log(currentStats)		
 
 					<% end %>
 
@@ -573,6 +576,8 @@
 
 					<% end %>
 				}
+
+				console.log(currentStats)
 			}
 
 			while (user_list.firstChild) {
@@ -635,6 +640,7 @@
 				tag_tagged.value = foButtons[i].name
 				tag_cat.value = "follow"
 				new_tag.submit()
+				console.log(f0bButtons[i].name)
 
 			}, false)
 		}
@@ -646,6 +652,7 @@
 				tag_tagged.value = faButtons[i].name
 				tag_cat.value = "fade"
 				new_tag.submit()
+				console.log(fabButtons[i].name)
 
 			}, false)
 		}
