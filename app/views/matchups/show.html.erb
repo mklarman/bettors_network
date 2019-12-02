@@ -20,11 +20,15 @@
 	let dogSpread = <%= @matchup.spread.to_f * -1 %>
 	dogSpread = "+" + dogSpread.toString()
 	
-	let favChoice = "<%= @matchup.fav + ' ' + @matchup.spread %>"
-	let dogChoice = "<%= @matchup.dog + ' ' %>" + dogSpread.toString()
+	let favChoice = "<%= @matchup.fav %>"
+	let favLine = + "<%= @matchup.spread.to_s %>"
+	let dogChoice = "<%= @matchup.dog %>"
+	let dogLine = dogSpread.toString()
 
-	let ovrSelec = "OVR " + "<%= @matchup.total %>"
-	let undSelec = "UND " + "<%= @matchup.total %>"
+	let ovrSelec = "OVR "
+	let overLine =  "<%= @matchup.total %>"
+	let undSelec = "UND "
+	let underLine = "<%= @matchup.total %>"
 
 
 </script>
@@ -79,10 +83,10 @@
 <script>
 	
 	let teamSelec = document.getElementsByClassName("selec")
-	fav_selec.innerHTML = favChoice
-	dog_selec.innerHTML = dogChoice
-	ovr_selec.innerHTML = ovrSelec
-	und_selec.innerHTML = undSelec
+	fav_selec.innerHTML = favChoice + " " + favLine
+	dog_selec.innerHTML = dogChoice + " " + dogLine
+	ovr_selec.innerHTML = ovrSelec + " " + overLine
+	und_selec.innerHTML = undSelec + " " + underLine
 	let subSelec = document.getElementById("sub_selec")
 	let totSelec = document.getElementById("tot_selec")
 	let sideCheck = <%= @side_check %>
@@ -109,7 +113,7 @@
 					dog_selec.style.color = "blue";
 				}
 
-				selection_choice.value = teamSelec[i].innerHTML
+				selection_choice.value = teamSelec[i].innerHTML.replace(/[0-9]/g, '')
 				selection_cat.value = "side"
 
 				subSelec.addEventListener("click", function(){

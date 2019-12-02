@@ -76,7 +76,7 @@ module TagsHelper
 
 					Matchup.all.each do |m|
 
-						if m.id == s.matchup_id
+						if m.id == s.matchup_id.to_i
 
 							if m.ats_winner.length > 0
 
@@ -1099,98 +1099,106 @@ module TagsHelper
 			user_obj = Hash.new
 
 			user_obj[:user_id] = u.id
-			user_obj[:side_selections] = side_winners + side_losers 
-			user_obj[:total_selections] = total_winners + total_losers 
-			user_obj[:all_record] = (total_winners + side_winners).to_s + " - " + (side_losers + total_losers).to_s 
-			user_obj[:all_prcnt] = (((total_winners + side_winners ) / (side_losers + total_losers)).round(2)).to_s + "%" 
 			user_obj[:all_selections] = total_winners + total_losers + side_losers + side_winners
-			user_obj[:sides_rec] = side_winners.to_s + " - " + side_losers.to_s 
-			user_obj[:sides_prcnt] = (side_winners.to_f / (side_winners.to_f + side_losers.to_f)).round(2) 
-			user_obj[:sides_prcnt] = user_obj[:sides_prcnt].to_s + "%" 
-
-			user_obj[:totals_prcnt] = (total_winners.to_f / (total_winners.to_f + total_losers.to_f)).round(2) 
-			user_obj[:totals_prcnt] = user_obj[:totals_prcnt].to_s + "%"
+			user_obj[:all_record] = (total_winners + side_winners).to_s + " - " + (side_losers + total_losers).to_s
 			
-			user_obj[:home_record] = home_winners.to_s + " - " + home_losers.to_s
-			user_obj[:home_prcnt] = (home_winners.to_f / (home_winners.to_f + home_losers.to_f)).round(2)
-			user_obj[:home_prcnt] = user_obj[:home_prcnt].to_s + "%"
+			if user_obj[:all_selections] != 0
 
-			user_obj[:road_record] = road_winners.to_s + " - " + road_losers.to_s
-			user_obj[:road_prcnt] = (road_winners.to_f / (road_winners.to_f + road_losers.to_f)).round(2)
-			user_obj[:road_prcnt] = user_obj[:road_prcnt].to_s + "%"
+				
+				user_obj[:side_selections] = side_winners + side_losers 
+				user_obj[:total_selections] = total_winners + total_losers 
+				user_obj[:all_prcnt] = (((total_winners + side_winners ) / (side_losers + total_losers + side_winners + total_winners )).round(2)).to_s + "%" 
+				user_obj[:all_selections] = total_winners + total_losers + side_losers + side_winners
+				user_obj[:sides_rec] = side_winners.to_s + " - " + side_losers.to_s 
+				user_obj[:sides_prcnt] = (side_winners.to_f / (side_winners.to_f + side_losers.to_f)).round(2) 
+				user_obj[:sides_prcnt] = user_obj[:sides_prcnt].to_s + "%" 
 
-			user_obj[:home_low_fav_record] = home_low_fav_winners.to_s + " - " + home_low_fav_losers.to_s
-			user_obj[:home_low_fav_prcnt] = (home_low_fav_winners.to_f / (home_low_fav_winners.to_f + home_low_fav_losers.to_f)).round(2)
-			user_obj[:home_low_fav_prcnt] = user_obj[:home_low_fav_prcnt].to_s + "%"
+				user_obj[:totals_prcnt] = (total_winners.to_f / (total_winners.to_f + total_losers.to_f)).round(2) 
+				user_obj[:totals_prcnt] = user_obj[:totals_prcnt].to_s + "%"
+				
+				user_obj[:home_record] = home_winners.to_s + " - " + home_losers.to_s
+				user_obj[:home_prcnt] = (home_winners.to_f / (home_winners.to_f + home_losers.to_f)).round(2)
+				user_obj[:home_prcnt] = user_obj[:home_prcnt].to_s + "%"
 
-			user_obj[:home_mid_fav_record] = home_mid_fav_winners.to_s + " - " + home_mid_fav_losers.to_s
-			user_obj[:home_mid_fav_prcnt] = (home_mid_fav_winners.to_f / (home_mid_fav_winners.to_f + home_mid_fav_losers.to_f)).round(2)
-			user_obj[:home_mid_fav_prcnt] = user_obj[:home_mid_fav_prcnt].to_s + "%"
+				user_obj[:road_record] = road_winners.to_s + " - " + road_losers.to_s
+				user_obj[:road_prcnt] = (road_winners.to_f / (road_winners.to_f + road_losers.to_f)).round(2)
+				user_obj[:road_prcnt] = user_obj[:road_prcnt].to_s + "%"
 
-			user_obj[:home_big_fav_record] = home_big_fav_winners.to_s + " - " + home_big_fav_losers.to_s
-			user_obj[:home_big_fav_prcnt] = (home_big_fav_winners.to_f / (home_big_fav_winners.to_f + home_big_fav_losers.to_f)).round(2)
-			user_obj[:home_big_fav_prcnt] = user_obj[:home_big_fav_prcnt].to_s + "%"
+				user_obj[:home_low_fav_record] = home_low_fav_winners.to_s + " - " + home_low_fav_losers.to_s
+				user_obj[:home_low_fav_prcnt] = (home_low_fav_winners.to_f / (home_low_fav_winners.to_f + home_low_fav_losers.to_f)).round(2)
+				user_obj[:home_low_fav_prcnt] = user_obj[:home_low_fav_prcnt].to_s + "%"
 
-			user_obj[:home_low_dog_record] = home_low_dog_winners.to_s + " - " + home_low_dog_losers.to_s
-			user_obj[:home_low_dog_prcnt] = (home_low_dog_winners.to_f / (home_low_dog_winners.to_f + home_low_dog_losers.to_f)).round(2)
-			user_obj[:home_low_dog_prcnt] = user_obj[:home_low_dog_prcnt].to_s + "%"
+				user_obj[:home_mid_fav_record] = home_mid_fav_winners.to_s + " - " + home_mid_fav_losers.to_s
+				user_obj[:home_mid_fav_prcnt] = (home_mid_fav_winners.to_f / (home_mid_fav_winners.to_f + home_mid_fav_losers.to_f)).round(2)
+				user_obj[:home_mid_fav_prcnt] = user_obj[:home_mid_fav_prcnt].to_s + "%"
 
-			user_obj[:home_mid_dog_record] = home_mid_dog_winners.to_s + " - " + home_mid_dog_losers.to_s
-			user_obj[:home_mid_dog_prcnt] = (home_mid_dog_winners.to_f / (home_mid_dog_winners.to_f + home_mid_dog_losers.to_f)).round(2)
-			user_obj[:home_mid_dog_prcnt] = user_obj[:home_mid_dog_prcnt].to_s + "%"
+				user_obj[:home_big_fav_record] = home_big_fav_winners.to_s + " - " + home_big_fav_losers.to_s
+				user_obj[:home_big_fav_prcnt] = (home_big_fav_winners.to_f / (home_big_fav_winners.to_f + home_big_fav_losers.to_f)).round(2)
+				user_obj[:home_big_fav_prcnt] = user_obj[:home_big_fav_prcnt].to_s + "%"
 
-			user_obj[:home_big_dog_record] = home_big_dog_winners.to_s + " - " + home_big_fav_losers.to_s
-			user_obj[:home_big_dog_prcnt] = (home_big_dog_winners.to_f / (home_big_dog_winners.to_f + home_big_dog_losers.to_f)).round(2)
-			user_obj[:home_big_dog_prcnt] = user_obj[:home_big_dog_prcnt].to_s + "%"
+				user_obj[:home_low_dog_record] = home_low_dog_winners.to_s + " - " + home_low_dog_losers.to_s
+				user_obj[:home_low_dog_prcnt] = (home_low_dog_winners.to_f / (home_low_dog_winners.to_f + home_low_dog_losers.to_f)).round(2)
+				user_obj[:home_low_dog_prcnt] = user_obj[:home_low_dog_prcnt].to_s + "%"
 
-			user_obj[:road_low_fav_record] = road_low_fav_winners.to_s + " - " + road_low_fav_losers.to_s
-			user_obj[:road_low_fav_prcnt] = (road_low_fav_winners.to_f / (road_low_fav_winners.to_f + road_low_fav_losers.to_f)).round(2)
-			user_obj[:road_low_fav_prcnt] = user_obj[:road_low_fav_prcnt].to_s + "%"
+				user_obj[:home_mid_dog_record] = home_mid_dog_winners.to_s + " - " + home_mid_dog_losers.to_s
+				user_obj[:home_mid_dog_prcnt] = (home_mid_dog_winners.to_f / (home_mid_dog_winners.to_f + home_mid_dog_losers.to_f)).round(2)
+				user_obj[:home_mid_dog_prcnt] = user_obj[:home_mid_dog_prcnt].to_s + "%"
 
-			user_obj[:road_mid_fav_record] = road_mid_fav_winners.to_s + " - " + road_mid_fav_losers.to_s
-			user_obj[:road_mid_fav_prcnt] = (road_mid_fav_winners.to_f / (road_mid_fav_winners.to_f + road_mid_fav_losers.to_f)).round(2)
-			user_obj[:road_mid_fav_prcnt] = user_obj[:road_mid_fav_prcnt].to_s + "%"
+				user_obj[:home_big_dog_record] = home_big_dog_winners.to_s + " - " + home_big_fav_losers.to_s
+				user_obj[:home_big_dog_prcnt] = (home_big_dog_winners.to_f / (home_big_dog_winners.to_f + home_big_dog_losers.to_f)).round(2)
+				user_obj[:home_big_dog_prcnt] = user_obj[:home_big_dog_prcnt].to_s + "%"
 
-			user_obj[:road_big_fav_record] = road_big_fav_winners.to_s + " - " + road_big_fav_losers.to_s
-			user_obj[:road_big_fav_prcnt] = (road_big_fav_winners.to_f / (road_big_fav_winners.to_f + road_big_fav_losers.to_f)).round(2)
-			user_obj[:road_big_fav_prcnt] = user_obj[:road_big_fav_prcnt].to_s + "%"
+				user_obj[:road_low_fav_record] = road_low_fav_winners.to_s + " - " + road_low_fav_losers.to_s
+				user_obj[:road_low_fav_prcnt] = (road_low_fav_winners.to_f / (road_low_fav_winners.to_f + road_low_fav_losers.to_f)).round(2)
+				user_obj[:road_low_fav_prcnt] = user_obj[:road_low_fav_prcnt].to_s + "%"
 
-			user_obj[:road_low_dog_record] = road_low_dog_winners.to_s + " - " + road_low_dog_losers.to_s
-			user_obj[:road_low_dog_prcnt] = (road_low_dog_winners.to_f / (road_low_dog_winners.to_f + road_low_dog_losers.to_f)).round(2)
-			user_obj[:road_low_dog_prcnt] = user_obj[:road_low_dog_prcnt].to_s + "%"
+				user_obj[:road_mid_fav_record] = road_mid_fav_winners.to_s + " - " + road_mid_fav_losers.to_s
+				user_obj[:road_mid_fav_prcnt] = (road_mid_fav_winners.to_f / (road_mid_fav_winners.to_f + road_mid_fav_losers.to_f)).round(2)
+				user_obj[:road_mid_fav_prcnt] = user_obj[:road_mid_fav_prcnt].to_s + "%"
 
-			user_obj[:road_mid_dog_record] = road_mid_dog_winners.to_s + " - " + road_mid_dog_losers.to_s
-			user_obj[:road_mid_dog_prcnt] = (road_mid_dog_winners.to_f / (road_mid_dog_winners.to_f + road_mid_dog_losers.to_f)).round(2)
-			user_obj[:road_mid_dog_prcnt] = user_obj[:road_mid_dog_prcnt].to_s + "%"
+				user_obj[:road_big_fav_record] = road_big_fav_winners.to_s + " - " + road_big_fav_losers.to_s
+				user_obj[:road_big_fav_prcnt] = (road_big_fav_winners.to_f / (road_big_fav_winners.to_f + road_big_fav_losers.to_f)).round(2)
+				user_obj[:road_big_fav_prcnt] = user_obj[:road_big_fav_prcnt].to_s + "%"
 
-			user_obj[:road_big_dog_record] = road_big_dog_winners.to_s + " - " + road_big_fav_losers.to_s
-			user_obj[:road_big_dog_prcnt] = (road_big_dog_winners.to_f / (road_big_dog_winners.to_f + road_big_dog_losers.to_f)).round(2)
-			user_obj[:road_big_dog_prcnt] = user_obj[:road_big_dog_prcnt].to_s + "%"
+				user_obj[:road_low_dog_record] = road_low_dog_winners.to_s + " - " + road_low_dog_losers.to_s
+				user_obj[:road_low_dog_prcnt] = (road_low_dog_winners.to_f / (road_low_dog_winners.to_f + road_low_dog_losers.to_f)).round(2)
+				user_obj[:road_low_dog_prcnt] = user_obj[:road_low_dog_prcnt].to_s + "%"
 
-			user_obj[:low_spread_record] = low_spread_winners.to_s + " - " + low_spread_losers.to_s
-			user_obj[:low_spread_prcnt] = (low_spread_winners.to_f / (low_spread_losers.to_f + low_spread_winners.to_f)).round(2)
-			user_obj[:low_spread_prcnt] = user_obj[:low_spread_prcnt].to_s + "%"
+				user_obj[:road_mid_dog_record] = road_mid_dog_winners.to_s + " - " + road_mid_dog_losers.to_s
+				user_obj[:road_mid_dog_prcnt] = (road_mid_dog_winners.to_f / (road_mid_dog_winners.to_f + road_mid_dog_losers.to_f)).round(2)
+				user_obj[:road_mid_dog_prcnt] = user_obj[:road_mid_dog_prcnt].to_s + "%"
 
-			user_obj[:mid_spread_record] = mid_spread_winners.to_s + " - " + mid_spread_losers.to_s
-			user_obj[:mid_spread_prcnt] = (mid_spread_winners.to_f / (mid_spread_losers.to_f + mid_spread_winners.to_f)).round(2)
-			user_obj[:mid_spread_prcnt] = user_obj[:mid_spread_prcnt].to_s + "%"
+				user_obj[:road_big_dog_record] = road_big_dog_winners.to_s + " - " + road_big_fav_losers.to_s
+				user_obj[:road_big_dog_prcnt] = (road_big_dog_winners.to_f / (road_big_dog_winners.to_f + road_big_dog_losers.to_f)).round(2)
+				user_obj[:road_big_dog_prcnt] = user_obj[:road_big_dog_prcnt].to_s + "%"
 
-			user_obj[:big_spread_record] = big_spread_winners.to_s + " - " + big_spread_losers.to_s
-			user_obj[:big_spread_prcnt] = (big_spread_winners.to_f / (big_spread_losers.to_f + big_spread_winners.to_f)).round(2)
-			user_obj[:big_spread_prcnt] = user_obj[:big_spread_prcnt].to_s + "%"
+				user_obj[:low_spread_record] = low_spread_winners.to_s + " - " + low_spread_losers.to_s
+				user_obj[:low_spread_prcnt] = (low_spread_winners.to_f / (low_spread_losers.to_f + low_spread_winners.to_f)).round(2)
+				user_obj[:low_spread_prcnt] = user_obj[:low_spread_prcnt].to_s + "%"
 
-			user_obj[:low_total_record] = low_total_winners.to_s + " - " + low_total_losers.to_s
-			user_obj[:low_total_prcnt] = (low_total_winners.to_f / (low_total_losers.to_f + low_total_winners.to_f)).round(2)
-			user_obj[:low_total_prcnt] = user_obj[:low_total_prcnt].to_s + "%"
+				user_obj[:mid_spread_record] = mid_spread_winners.to_s + " - " + mid_spread_losers.to_s
+				user_obj[:mid_spread_prcnt] = (mid_spread_winners.to_f / (mid_spread_losers.to_f + mid_spread_winners.to_f)).round(2)
+				user_obj[:mid_spread_prcnt] = user_obj[:mid_spread_prcnt].to_s + "%"
 
-			user_obj[:mid_total_record] = mid_total_winners.to_s + " - " + mid_total_losers.to_s
-			user_obj[:mid_total_prcnt] = (mid_total_winners.to_f / (mid_total_losers.to_f + mid_total_winners.to_f)).round(2)
-			user_obj[:mid_total_prcnt] = user_obj[:mid_total_prcnt].to_s + "%"
+				user_obj[:big_spread_record] = big_spread_winners.to_s + " - " + big_spread_losers.to_s
+				user_obj[:big_spread_prcnt] = (big_spread_winners.to_f / (big_spread_losers.to_f + big_spread_winners.to_f)).round(2)
+				user_obj[:big_spread_prcnt] = user_obj[:big_spread_prcnt].to_s + "%"
 
-			user_obj[:big_total_record] = big_total_winners.to_s + " - " + big_total_losers.to_s
-			user_obj[:big_total_prcnt] = (big_total_winners.to_f / (big_total_losers.to_f + big_total_winners.to_f)).round(2)
-			user_obj[:big_total_prcnt] = user_obj[:big_total_prcnt].to_s + "%"
+				user_obj[:low_total_record] = low_total_winners.to_s + " - " + low_total_losers.to_s
+				user_obj[:low_total_prcnt] = (low_total_winners.to_f / (low_total_losers.to_f + low_total_winners.to_f)).round(2)
+				user_obj[:low_total_prcnt] = user_obj[:low_total_prcnt].to_s + "%"
 
+				user_obj[:mid_total_record] = mid_total_winners.to_s + " - " + mid_total_losers.to_s
+				user_obj[:mid_total_prcnt] = (mid_total_winners.to_f / (mid_total_losers.to_f + mid_total_winners.to_f)).round(2)
+				user_obj[:mid_total_prcnt] = user_obj[:mid_total_prcnt].to_s + "%"
+
+				user_obj[:big_total_record] = big_total_winners.to_s + " - " + big_total_losers.to_s
+				user_obj[:big_total_prcnt] = (big_total_winners.to_f / (big_total_losers.to_f + big_total_winners.to_f)).round(2)
+				user_obj[:big_total_prcnt] = user_obj[:big_total_prcnt].to_s + "%"
+
+
+			end	
+			
 			@all_nba.push(user_obj) 
 
 		end
