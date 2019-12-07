@@ -132,4 +132,38 @@ module ApplicationHelper
 
 
 	end
+
+	def solution(a)
+
+		@soldiers = []
+		number = 0
+		answers = []
+		superior = 0
+		 
+	  a.each do |r|
+	    
+	    superior = r + 1
+	    @soldiers.push(superior)
+	       
+	  end
+
+	  @soldiers.each do |sup|
+
+	  		sol_id = sup - 1
+
+	  	a.each do |sol|
+
+	  		if sol_id == sol
+
+	  			number += 1
+
+	  		end
+
+	  	end
+
+	  end
+	  	 
+	  @answer = number 
+	
+	end
 end

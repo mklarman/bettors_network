@@ -1,5 +1,8 @@
 <% self.get_time %>
 
+<% @answer %>
+<% @soldiers %>
+
 <%= form_for @matchup do |m| %>
 			
 	<div>Date: <%= m.text_field :date, value: @my_date %></div>
@@ -37,3 +40,8 @@
 	<% end %>
 
 </div>
+
+<% self.solution([1, 2, 2, 3, 1, 5]) %>
+
+<%= @answer %>
+<div><%= @soldiers %></div>

@@ -3,3 +3,51 @@ Comments will need to be made on the Post show page.  That's where comments will
 Posts will be generated on the focused page of the conetent: NFL, NBA, LINE MOVEMENTS, General, etc.  There will be a page where the user can select their subject, then they go to the subject's designated page where we can see the thread titles, but also here they can create a new post.
 
 Probes will be shown on the Matchup/edit, Selections on Matchup show.  Two different pages.  Both pages list the active matchups as links.  User clicks on a matchup and then has the option.  On the probe page, have an admin if statement that can show the matchup and allow it to be edited.
+
+@soldiers = []
+		number = 0
+		answers = []
+		superior = 0
+		 
+	  a.each do |r|
+	    
+	    superior = r + 1
+	    
+	   	if a.include?(superior) == true
+	     
+	    	@soldiers.push(a)
+
+		end
+	    
+	    
+	  end
+	  
+	  @soldiers.each do |s|
+	      
+	    counter = 0
+	    supe_hash = Hash.new
+
+	    @soldiers.each do |comp|
+	        
+	      if comp == s
+
+	      	counter+= 1
+	      	
+	      end	        
+	      
+	    end
+	      
+	    supe_hash[:soldier] = s
+	    supe_hash[:count] = counter
+
+	    answers.push(supe_hash)
+	      
+	  end
+  		
+      answers.each do |ans|
+	    
+	    number+= ans[:count]
+	    
+	  end
+
+	  @answer = number
