@@ -4,55 +4,7 @@ Posts will be generated on the focused page of the conetent: NFL, NBA, LINE MOVE
 
 Probes will be shown on the Matchup/edit, Selections on Matchup show.  Two different pages.  Both pages list the active matchups as links.  User clicks on a matchup and then has the option.  On the probe page, have an admin if statement that can show the matchup and allow it to be edited.
 
-@soldiers = []
-		number = 0
-		answers = []
-		superior = 0
-		 
-	  a.each do |r|
-	    
-	    superior = r + 1
-	    
-	   	if a.include?(superior) == true
-	     
-	    	@soldiers.push(a)
-
-		end
-	    
-	    
-	  end
-	  
-	  @soldiers.each do |s|
-	      
-	    counter = 0
-	    supe_hash = Hash.new
-
-	    @soldiers.each do |comp|
-	        
-	      if comp == s
-
-	      	counter+= 1
-	      	
-	      end	        
-	      
-	    end
-	      
-	    supe_hash[:soldier] = s
-	    supe_hash[:count] = counter
-
-	    answers.push(supe_hash)
-	      
-	  end
-  		
-      answers.each do |ans|
-	    
-	    number+= ans[:count]
-	    
-	  end
-
-	  @answer = number
-
-	  BETTOR'S NETWOR
+	  BETTOR'S NETWORK
 
 	  User Model
 	  Matchup Model
@@ -64,15 +16,17 @@ Probes will be shown on the Matchup/edit, Selections on Matchup show.  Two diffe
 
 	  1) Enter Picks Section
 
+	  	This is primarily done.  Users will click a link that brings them to matchups index.  On matchups index is a list of the games sorted by sport.  You click on a matchup and go to matchups show where the selection process is.
+
 	  	Teams, matchups, Pick form, game_id, user_id, a gui option for selecting.  Click om the matchup, and on the matchup show page make a selection and submit it.  Once a selection is made the option to select that option again disappears.  Can select side or total.  Picks will take a user_id and a matchup_id.
 
 	  	Enter Picks has to be fast and easy for the user.  "enter picks homepage" is matchup/index.  That will list all available matchups sorted by sport, each one clickable.  Click on a link and then brought to that matchups homepage where you can select the side or total.  Three clicks and you are done. Won't take long at all.
 
-	  2) Grade Picks
+	  2) Grade Picks - get the records on demand for the community and the current user.  Selection.choice will be compared to Matchup.ats_winner and Matchup.total_result depending if Selection.cat is "Side" or "Total".  So, the data entered into those fields must match what is auomatically entered into the selection.choice field upon click. 
 
 	  	To grade picks we need to get the ATS winner and the ATS total winner from the matchup.  Once we have that, we compare to the selection that shares the id.  We then group winners and losers and get the percetage in each category we track.  Picks are going to be graded where they need to be.  The user's picks will be graded on their profile page, community picks graded in the directory section.
 
-	  3) Create Personal Consensus
+	  3) Create Personal Consensus - allow users to tag anyone they want as a fader or a follower - this will be done on the directory page.  Then display the results of their tags for them on their page.
 
 	  	Users will need to go to a directory that can have two sorting options.  First is sort by sport.  Choose a sport and the page refreshes where you can then choose the situation.  Once the situation is chosen the community list appears from hightest to loswest win % in that category.  Next to the win % will be a fade button and a follow button.  You can hit either one, but once you are fading someone or following someone then what appears is a delete button that says STOP.
 
@@ -80,15 +34,9 @@ Probes will be shown on the Matchup/edit, Selections on Matchup show.  Two diffe
 
 	  	These are the main three.
 
-	  	
-
-
-
-
-
-
 	  You land on the home page.  The home page will have to depict what the sight is for(creating a twitter like sports bettors network) and who it is for(the average sports bettor).  On this home page you can sign up - new registration -  or you can login to your account - if an existimg member.  The sign up page can have some additional details to it plus the form.  The login fields themselves will be on the home page.  You log in and you are brought to:
 
 	  Your dashboard.  Your dash will hold your information.  How many people you are following, how many you are fading.  Also who is following you and who is fading you.  Your pick record, maybe community ranking in each category.  Have to make a suggestion to them based on the parameters they set up.  From the dashboard you can get to the picks section
 
-	  Picks Page:  The picks page will hold all the links of the games that are available to be chosen.  They will be sorted by sport.  You click on a game and you can choose either the side or the total 
+	  Picks Page:  The picks page will hold all the links of the games that are available to be chosen.  They will be sorted by sport.  You click on a game and you can choose either the side or the total.
+

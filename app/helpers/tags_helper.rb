@@ -72,6 +72,20 @@ module TagsHelper
 
 			u.selections.each do |s|
 
+				user_choice = " "
+
+				user_choice = s.choice.gsub!(/\d+/,"")
+
+				if s.cat == "side"
+
+					user_choice = s.choice.gsub( /.{2}$/, '' )
+
+				else
+
+					user_choice = s.choice.gsub( /.{1}$/, '' )
+
+				end
+
 				if s.sport == "NFL"
 
 					Matchup.all.each do |m|
@@ -82,13 +96,13 @@ module TagsHelper
 
 								if s.cat == "side"
 
-									if s.choice == m.ats_winner
+									if user_choice == m.ats_winner
 
 										side_winners += 1
 
 									else
 
-										if s.choice != m.ats_winner && m.ats_winner != "push"
+										if user_choice != m.ats_winner && m.ats_winner != "push"
 
 											side_losers += 1
 
@@ -96,15 +110,15 @@ module TagsHelper
 
 									end
 
-									if m.fav_home == true && s.choice == m.fav
+									if m.fav_home == true && user_choice == m.fav
 
-										if s.choice == m.ats_winner
+										if user_choice == m.ats_winner
 
 											home_winners += 1
 
 										else
 
-											if s.choice != m.ats_winner && m.ats_winner != "push"
+											if user_choice != m.ats_winner && m.ats_winner != "push"
 
 												home_losers += 1
 
@@ -113,15 +127,15 @@ module TagsHelper
 										end
 
 
-									elsif m.fav_home == false && s.choice == m.dog
+									elsif m.fav_home == false && user_choice == m.dog
 
-										if s.choice == m.ats_winner
+										if user_choice == m.ats_winner
 
 											home_winners += 1
 
 										else
 
-											if s.choice != m.ats_winner && m.ats_winner != "push"
+											if user_choice != m.ats_winner && m.ats_winner != "push"
 
 												home_losers += 1
 
@@ -132,13 +146,13 @@ module TagsHelper
 
 									else
 
-										if s.choice == m.ats_winner
+										if user_choice == m.ats_winner
 
 											road_winners += 1
 
 										else
 
-											if s.choice != m.ats_winner && m.ats_winner != "push"
+											if user_choice != m.ats_winner && m.ats_winner != "push"
 
 												road_losers += 1
 
@@ -151,13 +165,13 @@ module TagsHelper
 
 									if m.spread.to_f <= 3.0
 
-										if s.choice == m.ats_winner
+										if user_choice == m.ats_winner
 
 											low_spread_winners += 1
 
 										else
 
-											if s.choice != m.ats_winner && m.ats_winner != "push"
+											if user_choice != m.ats_winner && m.ats_winner != "push"
 
 												low_spread_losers += 1
 
@@ -165,15 +179,15 @@ module TagsHelper
 
 										end
 
-										if m.fav_home == true && s.choice == m.fav
+										if m.fav_home == true && user_choice == m.fav
 
-											if s.choice == m.ats_winner
+											if user_choice == m.ats_winner
 
 												home_low_fav_winners += 1
 
 											else
 
-												if s.choice != m.ats_winner && m.ats_winner != "push"
+												if user_choice != m.ats_winner && m.ats_winner != "push"
 
 													home_low_fav_losers += 1
 
@@ -182,15 +196,15 @@ module TagsHelper
 											end
 
 
-										elsif m.fav_home == false && s.choice == m.dog
+										elsif m.fav_home == false && user_choice == m.dog
 
-											if s.choice == m.ats_winner
+											if user_choice == m.ats_winner
 
 												home_low_dog_winners += 1
 
 											else
 
-												if s.choice != m.ats_winner && m.ats_winner != "push"
+												if user_choice != m.ats_winner && m.ats_winner != "push"
 
 													home_low_dog_losers += 1
 
@@ -202,13 +216,13 @@ module TagsHelper
 
 											if m.fav_home == true
 
-												if s.choice == m.ats_winner
+												if user_choice == m.ats_winner
 
 													road_low_dog_winners += 1
 
 												else
 
-													if s.choice != m.ats_winner && m.ats_winner != "push"
+													if user_choice != m.ats_winner && m.ats_winner != "push"
 
 														road_low_dog_losers += 1
 
@@ -218,13 +232,13 @@ module TagsHelper
 
 											else
 
-												if s.choice == m.ats_winner
+												if user_choice == m.ats_winner
 
 													road_low_fav_winners += 1
 
 												else
 
-													if s.choice != m.ats_winner && m.ats_winner != "push"
+													if user_choice != m.ats_winner && m.ats_winner != "push"
 
 														road_low_fav_losers += 1
 
@@ -241,13 +255,13 @@ module TagsHelper
 
 									elsif m.spread.to_f > 3.0 && m.spread.to_f <= 7.0
 
-										if s.choice == m.ats_winner
+										if user_choice == m.ats_winner
 
 											mid_spread_winners += 1
 
 										else
 
-											if s.choice != m.ats_winner && m.ats_winner != "push"
+											if user_choice != m.ats_winner && m.ats_winner != "push"
 
 												mid_spread_losers += 1
 
@@ -255,15 +269,15 @@ module TagsHelper
 
 										end
 
-										if m.fav_home == true && s.choice == m.fav
+										if m.fav_home == true && user_choice == m.fav
 
-											if s.choice == m.ats_winner
+											if user_choice == m.ats_winner
 
 												home_mid_fav_winners += 1
 
 											else
 
-												if s.choice != m.ats_winner && m.ats_winner != "push"
+												if user_choice != m.ats_winner && m.ats_winner != "push"
 
 													home_mid_fav_losers += 1
 
@@ -272,15 +286,15 @@ module TagsHelper
 											end
 
 
-										elsif m.fav_home == false && s.choice == m.dog
+										elsif m.fav_home == false && user_choice == m.dog
 
-											if s.choice == m.ats_winner
+											if user_choice == m.ats_winner
 
 												home_mid_dog_winners += 1
 
 											else
 
-												if s.choice != m.ats_winner && m.ats_winner != "push"
+												if user_choice != m.ats_winner && m.ats_winner != "push"
 
 													home_mid_dog_losers += 1
 
@@ -292,13 +306,13 @@ module TagsHelper
 
 											if m.fav_home == true
 
-												if s.choice == m.ats_winner
+												if user_choice == m.ats_winner
 
 													road_mid_dog_winners += 1
 
 												else
 
-													if s.choice != m.ats_winner && m.ats_winner != "push"
+													if user_choice != m.ats_winner && m.ats_winner != "push"
 
 														road_mid_dog_losers += 1
 
@@ -308,13 +322,13 @@ module TagsHelper
 
 											else
 
-												if s.choice == m.ats_winner
+												if user_choice == m.ats_winner
 
 													road_mid_fav_winners += 1
 
 												else
 
-													if s.choice != m.ats_winner && m.ats_winner != "push"
+													if user_choice != m.ats_winner && m.ats_winner != "push"
 
 														road_mid_fav_losers += 1
 
@@ -330,13 +344,13 @@ module TagsHelper
 
 									else
 
-										if s.choice == m.ats_winner
+										if user_choice == m.ats_winner
 
 											big_spread_winners += 1
 
 										else
 
-											if s.choice != m.ats_winner && m.ats_winner != "push"
+											if user_choice != m.ats_winner && m.ats_winner != "push"
 
 												big_spread_losers += 1
 
@@ -344,15 +358,15 @@ module TagsHelper
 
 										end
 
-										if m.fav_home == true && s.choice == m.fav
+										if m.fav_home == true && user_choice == m.fav
 
-											if s.choice == m.ats_winner
+											if user_choice == m.ats_winner
 
 												home_big_fav_winners += 1
 
 											else
 
-												if s.choice != m.ats_winner && m.ats_winner != "push"
+												if user_choice != m.ats_winner && m.ats_winner != "push"
 
 													home_big_fav_losers += 1
 
@@ -361,15 +375,15 @@ module TagsHelper
 											end
 
 
-										elsif m.fav_home == false && s.choice == m.dog
+										elsif m.fav_home == false && user_choice == m.dog
 
-											if s.choice == m.ats_winner
+											if user_choice == m.ats_winner
 
 												home_big_dog_winners += 1
 
 											else
 
-												if s.choice != m.ats_winner && m.ats_winner != "push"
+												if user_choice != m.ats_winner && m.ats_winner != "push"
 
 													home_big_dog_losers += 1
 
@@ -381,13 +395,13 @@ module TagsHelper
 
 											if m.fav_home == true
 
-												if s.choice == m.ats_winner
+												if user_choice == m.ats_winner
 
 													road_big_dog_winners += 1
 
 												else
 
-													if s.choice != m.ats_winner && m.ats_winner != "push"
+													if user_choice != m.ats_winner && m.ats_winner != "push"
 
 														road_big_dog_losers += 1
 
@@ -397,13 +411,13 @@ module TagsHelper
 
 											else
 
-												if s.choice == m.ats_winner
+												if user_choice == m.ats_winner
 
 													road_big_fav_winners += 1
 
 												else
 
-													if s.choice != m.ats_winner && m.ats_winner != "push"
+													if user_choice != m.ats_winner && m.ats_winner != "push"
 
 														road_big_fav_losers += 1
 
@@ -423,11 +437,11 @@ module TagsHelper
 
 								else
 
-									if s.choice == m.total_result
+									if user_choice == m.total_result
 
 										total_winners += 1
 
-									elsif s.choice != m.total_result && m.total_result != "push"
+									elsif user_choice != m.total_result && m.total_result != "push"
 
 										total_losers += 1
 
@@ -435,11 +449,11 @@ module TagsHelper
 
 									if m.total.to_f <= 43
 
-										if s.choice == m.total_result
+										if user_choice == m.total_result
 
 											low_total_winners += 1
 
-										elsif s.choice != m.total_result && m.total_result != "push"
+										elsif user_choice != m.total_result && m.total_result != "push"
 
 											low_total_losers += 1
 
@@ -448,7 +462,7 @@ module TagsHelper
 
 									elsif m.total.to_f >= 43.5 && m.total.to_f <= 46.5
 
-										if s.choice == m.total_result
+										if user_choice == m.total_result
 
 											mid_total_winners += 1
 
