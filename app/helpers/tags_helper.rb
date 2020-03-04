@@ -74,17 +74,7 @@ module TagsHelper
 
 				user_choice = " "
 
-				user_choice = s.choice.gsub!(/\d+/,"")
-
-				if s.cat == "side"
-
-					user_choice = user_choice.gsub( /.{2}$/, '' )
-
-				else
-
-					user_choice = user_choice.gsub( /.{1}$/, '' )
-
-				end
+				user_choice = s.choice.split(" ")[0]
 
 				if s.sport == "NFL"
 
@@ -701,17 +691,7 @@ module TagsHelper
 
 				user_choice = " "
 
-				user_choice = s.choice.gsub!(/\d+/,"")
-
-				if s.cat == "side"
-
-					user_choice = user_choice.gsub( /.{2}$/, '' )
-
-				else
-
-					user_choice = user_choice.gsub( /.{1}$/, '' )
-
-				end
+				user_choice = s.choice.split(" ")[0]
 
 				if s.sport == "NBA"
 
@@ -745,7 +725,7 @@ module TagsHelper
 
 										else
 
-											if user.choice != m.ats_winner && m.ats_winner != "push"
+											if user_choice != m.ats_winner && m.ats_winner != "push"
 
 												home_losers += 1
 
