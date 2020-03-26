@@ -23,7 +23,43 @@
 
 	height: 100%;
 	width: 100%;
-	border: 1px solid red;
+	
+}
+
+.heading_text{
+
+	font-size: 22px;
+}
+
+#info_cont{
+
+	border: 1px solid black;
+	width: 60%;
+	margin-left: 25%;
+	margin-top: 5%;
+	font-size: 25px;
+	background: black;
+
+}
+
+.user_steps{
+
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+#mission_statement{
+
+	margin-top: 3%;
+}
+
+#greeting{
+
+	text-align: center;
+	height: 100%;
+	width: 100%;
+	border: 1px solid black;
+	background: gray;
 }
 
 .selec{

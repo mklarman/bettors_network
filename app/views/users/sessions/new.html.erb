@@ -1,30 +1,86 @@
 <div id="log_in">
 
-  <h2>WELCOME TO BETTORWORK.COM</h2>
+  <div id="greeting"><h2>WELCOME TO COMMUNITYCAPPER.COM</h2></div>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div id="selling_points">
+    
+    <div id="mission_statement" class="heading_text">OUR MISSION
+      
+      <div style="font-size: 22px;"><p>Bettors analyze the numbers.  We analyze the bettors.  Help us create the largest, most accurate, and most detailed database of sports bettors on the web that can will be searchable.</p></div>
+
     </div>
 
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
+     <div id="our_plea" class= "heading_text">OUR PLEA
+
+      <div><p>
+        
+        BOTTOM LINE IS WE NEED YOU.  Whether you are a bettor that messes around for a few bucks or if you like to send it in.  We need the public to simply making coming to communitycapper.com part of their sports betting routine.  If we do that.  ALL OF US WILL BENEFIT.  Imagine if you had the largest online databse of sports bettors each graded in 20 different ATS categories at your fingertips.  Would you consult it before you wagered one cent?
+
+      </p></div>
+
+     </div>
+
+     <div id="info_cont">
+
+       <div class="steps" style="color: white;"> WHAT YOU'LL DO:
+
+        <ul>
+        
+          <div class="user_steps" style="color: darkblue;"><li>PERFORM WHATEVER HANDICAPPING STRATEGIES YOU USE</li></div>
+         <div class="user_steps" style="color: darkblue;"> <li>GO TO COMMUNITYCAPPER.COM AND ENTER YOUR PICKS</li></div>
+
+        </ul>
+
+       </div>
+
+       <div class="steps" style="color: white;"> WHAT WE DO:
+
+        <ul>
+          
+          <div class="user_steps" style="color: darkred;"><li>TRACK RESULTS IN 20 DIFFERENT ATS SITUATIONS ON EACH BETTOR</li></div>
+          <div class="user_steps" style="color: darkred;"><li>INDEX ALL STATS ON ALL BETTORS IN A DATABASE</li></div>
+          <div class="user_steps" style="color: darkred;"><li>CREATE AN EASY, STRAIGHTFORWARD WAY TO ACCESS THE INFO IN THE DATABSE</li></div>
+          <div class="user_steps" style="color: darkred;"><li>ALLOW USERS TO FADE OR FOLLOW BETTORS IN CERTAIN CATEGORIES OR FOR A WHOLE SPORT</li></div>
+          <div class="user_steps" style="color: darkred;"><li>CREATE YOUR PERSONAL CONSENSUS WHERE YOU KNOW THE ABILITIES OF THE BETTORS OFFERING THE PICKS</li></div>
+
+
+        </ul>
+        
+
+
+      </ul>
+
     </div>
 
-    <% if devise_mapping.rememberable? %>
+  </div>
+
+  <div class = "hide" >
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Log in" %>
       </div>
     <% end %>
 
-    <div class="actions">
-      <%= f.submit "Log in" %>
-    </div>
-  <% end %>
+    <%= render "users/shared/links" %>
 
-  <%= render "users/shared/links" %>
+  </div>
 
 </div>
