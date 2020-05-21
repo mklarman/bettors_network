@@ -21,6 +21,11 @@ class MatchupsController < ApplicationController
 		@my_date
 		@matchup = Matchup.all
 		@matchup = Matchup.new
+		@mlb_matchups = []
+		@nba_matchups = []
+		@cbb_matchups = []
+		@cfb_matchups = []
+		@matchup_date
 
 	end
 

@@ -1,7 +1,21 @@
 <% self.get_time %>
 
+
+
+
 <% @answer %>
 <% @soldiers %>
+<% @nfl_matchups %>
+<% @nba_matchups %>
+<% @mlb_matchups %>
+<% @cfb_matchups %>
+<% @cbb_matchups %>
+<% @dog_spread %>
+<% @user_picks = [] %>
+
+<% @test1 %>
+<% @test2 %>
+<% @test %>
 
 
 <%= form_for @matchup do |m| %>
@@ -25,7 +39,110 @@
 
 <% end %>
 
-<div>
+<% comp_date = self.convert_my_date %>
+
+<% self.get_nfl_matchups %>
+
+MyDate: <%= @my_date %>
+Test 2: <%= @test2 %>
+Test: <%= @test %>
+
+
+
+
+
+<div id="game_container">
+
+
+</div>
+
+
+<script>
+
+	let nflMatchups = []
+
+	<% @nfl_matchups.each do |nfl| %>
+
+
+		<% @dog_spread = -1 * (nfl.spread.to_f) %>
+		<% @dog_spread = "+" + @dog_spread.to_s %>
+
+		matchupInfo = {}
+
+		matchupInfo.fav = "<%= nfl.fav %>"
+		matchupInfo.dog = "<%= nfl.dog %>"
+		matchupInfo.spread = "<%= nfl.spread %>"
+		matchupInfo.dogSpread = "<%= @dog_spread %>"
+		matchupInfo.total = "<%= nfl.total %>"
+
+		nflMatchups.push(matchupInfo)
+
+	<% end %>
+
+	for(i=0; i< nflMatchups.length; i++){
+
+		let box = document.createElement('div')
+		box.setAttribute("class", "pickGrid")
+		box.style.height = '20%'
+		box.style.width = '33%'
+		
+		box.style.display = 'inLine-block'
+		box.style.fontSize = '20px'
+		box.style.textAlign = 'left'
+		box.style.marginTop = '1%'
+		let fav = document.createElement('div')
+		fav.setAttribute("class", "favs")
+		fav.style.height = '100%'
+		fav.style.width = '40%'
+		fav.style.border = '1px solid black'
+		fav.style.textAlign = 'left'
+		fav.style.display = 'inLine-block'
+		fav.style.marginBottom = '1%'
+		fav.innerHTML = nflMatchups[i].fav + " " + nflMatchups[i].spread
+		let overTotal = document.createElement('div')
+		overTotal.setAttribute("class", "overTotal")
+		overTotal.style.height = '100%'
+		overTotal.style.width = '25%'
+		overTotal.style.border = '1px solid black'
+		overTotal.style.textAlign = 'left'
+		overTotal.style.display = 'inLine-block'
+		overTotal.style.marginBottom = '2%'
+		overTotal.innerHTML = "Ovr " + nflMatchups[i].total
+		let dog = document.createElement('div')
+		dog.setAttribute("class", "favs")
+		dog.style.height = '100%'
+		dog.style.width = '40%'
+		dog.style.border = '1px solid black'
+		dog.style.textAlign = 'left'
+		dog.style.display = 'inLine-block'
+		dog.innerHTML = nflMatchups[i].dog + " " + nflMatchups[i].dogSpread
+
+		let underTotal = document.createElement('div')
+		underTotal.setAttribute("class", "overTotal")
+		underTotal.style.height = '100%'
+		underTotal.style.width = '25%'
+		underTotal.style.border = '1px solid black'
+		underTotal.style.textAlign = 'left'
+		underTotal.style.display = 'inLine-block'
+		underTotal.innerHTML = "Und " + nflMatchups[i].total
+		
+		box.appendChild(fav)
+		box.appendChild(overTotal)
+		box.appendChild(dog)
+		box.appendChild(underTotal)
+		game_container.appendChild(box)
+		
+
+		
+	}
+
+
+</script>
+
+
+
+
+<div class = "hide">
 	
 	<% Matchup.all.each do |m| %>
 
