@@ -12,10 +12,14 @@
 <% @cbb_matchups %>
 <% @dog_spread %>
 <% @user_picks = [] %>
+<% @side_check %>
+<% @total_check %>
+<% @games_to_show = [] %>
 
 <% @test1 %>
 <% @test2 %>
 <% @test %>
+
 
 
 <%= form_for @matchup do |m| %>
@@ -42,10 +46,10 @@
 <% comp_date = self.convert_my_date %>
 
 <% self.get_nfl_matchups %>
+<% self.show_games(@nfl_matchups) %>
 
-MyDate: <%= @my_date %>
-Test 2: <%= @test2 %>
-Test: <%= @test %>
+<%= @games_to_show %>
+
 
 
 
@@ -63,12 +67,21 @@ Test: <%= @test %>
 
 	<% @nfl_matchups.each do |nfl| %>
 
+		<% if nfl.spread.index(".") == nil %>
 
-		<% @dog_spread = -1 * (nfl.spread.to_f) %>
+		<% @dog_spread = -1 * (nfl.spread.to_i) %>
 		<% @dog_spread = "+" + @dog_spread.to_s %>
+
+		<% else %>
+
+			<% @dog_spread = -1 * (nfl.spread.to_f) %>
+			<% @dog_spread = "+" + @dog_spread.to_s %>
+
+		<% end %>
 
 		matchupInfo = {}
 
+		matchupInfo.home = <%= nfl.fav_home %>
 		matchupInfo.fav = "<%= nfl.fav %>"
 		matchupInfo.dog = "<%= nfl.dog %>"
 		matchupInfo.spread = "<%= nfl.spread %>"
