@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20191008143418) do
     t.string "money_line"
     t.string "dog_ml"
     t.string "total"
+    t.string "start_time"
+    t.boolean "show_game", default: true
     t.string "fav_score"
     t.string "dog_score"
     t.string "ats_winner"

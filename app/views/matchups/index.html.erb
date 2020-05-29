@@ -1,4 +1,7 @@
 <% self.get_time %>
+<% my_time = Time.now.strftime("%k:%M") %>
+
+<% my_time = (my_time.delete! ":").to_i %>
 
 
 
@@ -33,6 +36,7 @@
 	<div>Fav_ML: <%= m.text_field :money_line %></div>
 	<div>Dog_ML: <%= m.text_field :dog_ml %></div>
 	<div>Total: <%= m.text_field :total %></div>
+	<div>Start Time: <%= m.text_field :start_time %></div>
 	<div>Home_Score: <%= m.text_field :fav_score %></div>
 	<div>Road_Score: <%= m.text_field :dog_score %></div>
 	<div>Winner: <%= m.text_field :ats_winner %></div>
@@ -65,28 +69,29 @@
 
 	let nflMatchups = []
 
-	<% @nfl_matchups.each do |nfl| %>
+	<% @games_to_show.each do |g| %>
 
-		<% if nfl.spread.index(".") == nil %>
+		<% if g.spread.index(".") == nil %>
 
-		<% @dog_spread = -1 * (nfl.spread.to_i) %>
+		<% @dog_spread = -1 * (g.spread.to_i) %>
 		<% @dog_spread = "+" + @dog_spread.to_s %>
 
 		<% else %>
 
-			<% @dog_spread = -1 * (nfl.spread.to_f) %>
+			<% @dog_spread = -1 * (g.spread.to_f) %>
 			<% @dog_spread = "+" + @dog_spread.to_s %>
 
 		<% end %>
 
 		matchupInfo = {}
 
-		matchupInfo.home = <%= nfl.fav_home %>
-		matchupInfo.fav = "<%= nfl.fav %>"
-		matchupInfo.dog = "<%= nfl.dog %>"
-		matchupInfo.spread = "<%= nfl.spread %>"
+		matchupInfo.home = <%= g.fav_home %>
+		matchupInfo.fav = "<%= g.fav %>"
+		matchupInfo.dog = "<%= g.dog %>"
+		matchupInfo.spread = "<%= g.spread %>"
 		matchupInfo.dogSpread = "<%= @dog_spread %>"
-		matchupInfo.total = "<%= nfl.total %>"
+		matchupInfo.total = "<%= g.total %>"
+		matchupInfo.start_time = "<%= g.start_time %>"
 
 		nflMatchups.push(matchupInfo)
 

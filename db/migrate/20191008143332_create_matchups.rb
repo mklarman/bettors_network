@@ -11,6 +11,8 @@ class CreateMatchups < ActiveRecord::Migration[5.1]
 	  t.string :money_line
 	  t.string :dog_ml
 	  t.string :total
+	  t.string :start_time
+	  t.boolean :show_game, default: true
 	  t.string :fav_score
 	  t.string :dog_score
 	  t.string :ats_winner

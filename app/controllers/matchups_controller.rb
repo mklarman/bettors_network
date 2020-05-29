@@ -95,7 +95,7 @@ class MatchupsController < ApplicationController
 
 	def matchup_params
 
-		params.require(:matchup).permit(:date, :sport, :fav, :dog, :fav_home, :spread, :money_line, :dog_ml, :total, :fav_score, :dog_score, :ats_winner, :total_result)
+		params.require(:matchup).permit(:date, :sport, :fav, :dog, :fav_home, :spread, :money_line, :start_time, :show_game, :dog_ml, :total, :fav_score, :dog_score, :ats_winner, :total_result)
 
 	end	
 end
