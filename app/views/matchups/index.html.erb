@@ -1,7 +1,7 @@
 <% self.get_time %>
-<% my_time = Time.now.strftime("%k:%M") %>
+<% @my_time = (Time.now.strftime("%k%M")).to_i %>
 
-<% my_time = (my_time.delete! ":").to_i %>
+
 
 
 
@@ -47,6 +47,20 @@
 
 <% end %>
 
+<div class = "hide">
+	<%= form_for @selection do |s| %>
+		
+		<div><%= s.hidden_field :user_id, value: current_user.id %></div>
+		<div><%= s.hidden_field :matchup_id %></div>
+		<div>TYPE: <%= s.text_field :cat %></div>
+		<div>SPORT: <%= s.text_field :sport %></div>
+		<div>PICK: <%= s.text_field :choice %></div>
+		<div><%= s.submit  %></div>
+
+	<% end %>
+
+</div>
+
 <% comp_date = self.convert_my_date %>
 
 <% self.get_nfl_matchups %>
@@ -73,8 +87,8 @@
 
 		<% if g.spread.index(".") == nil %>
 
-		<% @dog_spread = -1 * (g.spread.to_i) %>
-		<% @dog_spread = "+" + @dog_spread.to_s %>
+			<% @dog_spread = -1 * (g.spread.to_i) %>
+			<% @dog_spread = "+" + @dog_spread.to_s %>
 
 		<% else %>
 
@@ -85,13 +99,22 @@
 
 		matchupInfo = {}
 
-		matchupInfo.home = <%= g.fav_home %>
-		matchupInfo.fav = "<%= g.fav %>"
-		matchupInfo.dog = "<%= g.dog %>"
-		matchupInfo.spread = "<%= g.spread %>"
+		matchupInfo.sport = "<%= g[:sport] %>"
+		matchupInfo.home = "<%= g[:fav_home] %>"
+		matchupInfo.fav = "<%= g[:fav] %>"
+		matchupInfo.dog = "<%= g[:dog] %>"
+		matchupInfo.spread = "<%= g[:spread] %>"
 		matchupInfo.dogSpread = "<%= @dog_spread %>"
-		matchupInfo.total = "<%= g.total %>"
-		matchupInfo.start_time = "<%= g.start_time %>"
+		matchupInfo.total = "<%= g[:total] %>"
+		matchupInfo.start_time = "<%= g[:start_time] %>"
+		matchupInfo.game_id = "<%= g[:id] %>"
+		matchupInfo.chosen = "<%= g[:side_or_total] %>"
+		matchupInfo.selection = "<%= g[:selection] %>"
+		matchupInfo.selOne = "<%= g[:sel_one] %>"
+		matchupInfo.selTwo = "<%= g[:sel_two] %>"
+		matchupInfo.selTwo = "<%= g[:money_line] %>"
+		matchupInfo.selTwo = "<%= g[:dog_ml] %>"
+
 
 		nflMatchups.push(matchupInfo)
 
@@ -116,7 +139,70 @@
 		fav.style.textAlign = 'left'
 		fav.style.display = 'inLine-block'
 		fav.style.marginBottom = '1%'
-		fav.innerHTML = nflMatchups[i].fav + " " + nflMatchups[i].spread
+		if (nflMatchups[i].chosen == "none" || nflMatchups[i].chosen == "total"){
+
+			fav.innerHTML = nflMatchups[i].fav + " " + nflMatchups[i].spread
+
+			fav.addEventListener("click", function(){
+
+				var destination;
+				var favDog;
+				var bettingLine;
+				var matchupId;
+				var sport;
+				var selection;
+				var situation;
+
+				if (nflMatchups[i].home == true){
+
+					destination = "Home-"
+				}else {
+
+					destination = "Road-"
+				}
+
+				if (parseInt(nflMatchups[i].spread) > 0){
+
+					favDog = "Dog-"
+				}else {
+
+					favDog = "Fav-"
+				}
+
+				if (nflMatchups[i].sport != "MLB" || nflMatchups[i].sport != "NHL" ){
+
+					if (abs(parseInt(nflMatchups[i].spread)) >= 4){
+
+						bettingLine = "Small Line"
+
+					}else if (abs(parseInt(nflMatchups[i].spread)) >= 5 &&abs(parseInt(nflMatchups[i].spread)) < 8 ){
+
+						bettingLine = "Medium Line"
+
+
+					}else{
+
+						bettingLine = "Big Line"
+					}
+
+				}
+
+				sport = nflMatchups[i].sport
+				selection = nflMatchups[i].fav
+				situation = destination + favDog + bettingLine
+				matchupId = nflMatchups[i].game_id
+
+				selection_matchup_id.value = matchupId
+				selection_cat.value = situation
+				selection_choice.value = selection
+
+				new_selection.submit
+
+
+			})
+
+		}
+
 		let overTotal = document.createElement('div')
 		overTotal.setAttribute("class", "overTotal")
 		overTotal.style.height = '100%'
