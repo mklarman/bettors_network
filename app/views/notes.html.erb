@@ -77,3 +77,167 @@ Probes will be shown on the Matchup/edit, Selections on Matchup show.  Two diffe
 
 Have the games grouped by sport and then at the bottom have their hot picks, reccomended picks.  How can I keep track of those picks?  Will everyone just be on the same bettors?  Most likely but so what, if it works it works.  Will it work is the question.  Will this put people on a more profitable path than standard handicapping practices.  It feels like yes to me.  Have to sell others on it.  Why standard handicapping practices fail.  What is the value here?  The database of bettors and the access to it.  Maybe can sell that to people who want to use the product, but the product would need 500 - 1000 handicappers using it.  That's the obstacle.  Is there value here?  The market is hot and you are seeing more and more the term "community platform" in the description of products in this space yet no one is really doing a community based handicapping strategy.  No one is doing this.  No one has been able to get sports bettors there on a steady basis.  Social media cant be the place you start.  Have to start grass roots.  In the online forums and at the sportsbooks once they open but people are not gonna want to be approached by a stranger.  That's the problem.  Have to figure out how to get the people there.
 
+<script>
+
+	let nflMatchups = []
+
+	<% @games_to_show.each do |g| %>
+
+		<% if g.spread.index(".") == nil %>
+
+			<% @dog_spread = -1 * (g.spread.to_i) %>
+			<% @dog_spread = "+" + @dog_spread.to_s %>
+
+		<% else %>
+
+			<% @dog_spread = -1 * (g.spread.to_f) %>
+			<% @dog_spread = "+" + @dog_spread.to_s %>
+
+		<% end %>
+
+		matchupInfo = {}
+
+		matchupInfo.sport = "<%= g[:sport] %>"
+		matchupInfo.home = "<%= g[:fav_home] %>"
+		matchupInfo.fav = "<%= g[:fav] %>"
+		matchupInfo.dog = "<%= g[:dog] %>"
+		matchupInfo.spread = "<%= g[:spread] %>"
+		matchupInfo.dogSpread = "<%= @dog_spread %>"
+		matchupInfo.total = "<%= g[:total] %>"
+		matchupInfo.start_time = "<%= g[:start_time] %>"
+		matchupInfo.game_id = "<%= g[:id] %>"
+		matchupInfo.chosen = "<%= g[:side_or_total] %>"
+		matchupInfo.selection = "<%= g[:selection] %>"
+		matchupInfo.selOne = "<%= g[:sel_one] %>"
+		matchupInfo.selTwo = "<%= g[:sel_two] %>"
+		matchupInfo.selTwo = "<%= g[:money_line] %>"
+		matchupInfo.selTwo = "<%= g[:dog_ml] %>"
+
+
+		nflMatchups.push(matchupInfo)
+
+	<% end %>
+
+	for(i=0; i< nflMatchups.length; i++){
+
+		let box = document.createElement('div')
+		box.setAttribute("class", "pickGrid")
+		box.style.height = '20%'
+		box.style.width = '33%'
+		
+		box.style.display = 'inLine-block'
+		box.style.fontSize = '20px'
+		box.style.textAlign = 'left'
+		box.style.marginTop = '1%'
+		let fav = document.createElement('div')
+		fav.setAttribute("class", "favs")
+		fav.style.height = '100%'
+		fav.style.width = '40%'
+		fav.style.border = '1px solid black'
+		fav.style.textAlign = 'left'
+		fav.style.display = 'inLine-block'
+		fav.style.marginBottom = '1%'
+		if (nflMatchups[i].chosen == "none" || nflMatchups[i].chosen == "total"){
+
+			fav.innerHTML = nflMatchups[i].fav + " " + nflMatchups[i].spread
+
+			fav.addEventListener("click", function(){
+
+				var destination;
+				var favDog;
+				var bettingLine;
+				var matchupId;
+				var sport;
+				var selection;
+				var situation;
+
+				if (nflMatchups[i].home == true){
+
+					destination = "Home-"
+				}else {
+
+					destination = "Road-"
+				}
+
+				if (parseInt(nflMatchups[i].spread) > 0){
+
+					favDog = "Dog-"
+				}else {
+
+					favDog = "Fav-"
+				}
+
+				if (nflMatchups[i].sport != "MLB" || nflMatchups[i].sport != "NHL" ){
+
+					if (abs(parseInt(nflMatchups[i].spread)) >= 4){
+
+						bettingLine = "Small Line"
+
+					}else if (abs(parseInt(nflMatchups[i].spread)) >= 5 &&abs(parseInt(nflMatchups[i].spread)) < 8 ){
+
+						bettingLine = "Medium Line"
+
+
+					}else{
+
+						bettingLine = "Big Line"
+					}
+
+				}
+
+				sport = nflMatchups[i].sport
+				selection = nflMatchups[i].fav
+				situation = destination + favDog + bettingLine
+				matchupId = nflMatchups[i].game_id
+
+				selection_matchup_id.value = matchupId
+				selection_cat.value = situation
+				selection_choice.value = selection
+
+				new_selection.submit
+
+
+			})
+
+		}
+
+		let overTotal = document.createElement('div')
+		overTotal.setAttribute("class", "overTotal")
+		overTotal.style.height = '100%'
+		overTotal.style.width = '25%'
+		overTotal.style.border = '1px solid black'
+		overTotal.style.textAlign = 'left'
+		overTotal.style.display = 'inLine-block'
+		overTotal.style.marginBottom = '2%'
+		overTotal.innerHTML = "Ovr " + nflMatchups[i].total
+		let dog = document.createElement('div')
+		dog.setAttribute("class", "favs")
+		dog.style.height = '100%'
+		dog.style.width = '40%'
+		dog.style.border = '1px solid black'
+		dog.style.textAlign = 'left'
+		dog.style.display = 'inLine-block'
+		dog.innerHTML = nflMatchups[i].dog + " " + nflMatchups[i].dogSpread
+
+		let underTotal = document.createElement('div')
+		underTotal.setAttribute("class", "overTotal")
+		underTotal.style.height = '100%'
+		underTotal.style.width = '25%'
+		underTotal.style.border = '1px solid black'
+		underTotal.style.textAlign = 'left'
+		underTotal.style.display = 'inLine-block'
+		underTotal.innerHTML = "Und " + nflMatchups[i].total
+		
+		box.appendChild(fav)
+		box.appendChild(overTotal)
+		box.appendChild(dog)
+		box.appendChild(underTotal)
+		game_container.appendChild(box)
+		
+
+		
+	}
+
+
+</script>
+

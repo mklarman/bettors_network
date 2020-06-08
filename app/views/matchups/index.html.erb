@@ -1,4 +1,8 @@
+<% @my_date %>
+<% @convert_my_date %>
 <% self.get_time %>
+<% @matchup_date %>
+
 <% @my_time = (Time.now.strftime("%k%M")).to_i %>
 
 
@@ -66,13 +70,6 @@
 <% self.get_nfl_matchups %>
 <% self.show_games(@nfl_matchups) %>
 
-<%= @games_to_show %>
-
-
-
-
-
-
 <div id="game_container">
 
 
@@ -83,21 +80,25 @@
 
 	let nflMatchups = []
 
+	let gameContainer = document.getElementById("game_container")
+
+
 	<% @games_to_show.each do |g| %>
 
-		<% if g.spread.index(".") == nil %>
+		<% if g[:spread].index(".") == nil %>
 
-			<% @dog_spread = -1 * (g.spread.to_i) %>
+			<% @dog_spread = -1 * (g[:spread].to_i) %>
 			<% @dog_spread = "+" + @dog_spread.to_s %>
 
 		<% else %>
 
-			<% @dog_spread = -1 * (g.spread.to_f) %>
+			<% @dog_spread = -1 * (g[:spread].to_f) %>
 			<% @dog_spread = "+" + @dog_spread.to_s %>
 
 		<% end %>
 
 		matchupInfo = {}
+		
 
 		matchupInfo.sport = "<%= g[:sport] %>"
 		matchupInfo.home = "<%= g[:fav_home] %>"
@@ -120,6 +121,8 @@
 
 	<% end %>
 
+	
+
 	for(i=0; i< nflMatchups.length; i++){
 
 		let box = document.createElement('div')
@@ -139,65 +142,80 @@
 		fav.style.textAlign = 'left'
 		fav.style.display = 'inLine-block'
 		fav.style.marginBottom = '1%'
-		if (nflMatchups[i].chosen == "none" || nflMatchups[i].chosen == "total"){
+
+
+		
+		if (nflMatchups[i].chosen == "none" || nflMatchups[i].chosen == "total" ){
 
 			fav.innerHTML = nflMatchups[i].fav + " " + nflMatchups[i].spread
+			fav.style.background = "black"
+			fav.style.color = "blue"
 
 			fav.addEventListener("click", function(){
 
-				var destination;
-				var favDog;
-				var bettingLine;
-				var matchupId;
-				var sport;
-				var selection;
-				var situation;
+				var gameCheck = []
 
-				if (nflMatchups[i].home == true){
+				for(i=0; i< nflMatchups.length; i++){
 
-					destination = "Home-"
-				}else {
+					var destination;
+					var favDog;
+					var bettingLine;
+					var matchupId;
+					var sport;
+					var selection;
+					var situation;
 
-					destination = "Road-"
-				}
+					if (nflMatchups[i].home == "true"){
 
-				if (parseInt(nflMatchups[i].spread) > 0){
+						destination = "Home-"
+					}else {
 
-					favDog = "Dog-"
-				}else {
-
-					favDog = "Fav-"
-				}
-
-				if (nflMatchups[i].sport != "MLB" || nflMatchups[i].sport != "NHL" ){
-
-					if (abs(parseInt(nflMatchups[i].spread)) >= 4){
-
-						bettingLine = "Small Line"
-
-					}else if (abs(parseInt(nflMatchups[i].spread)) >= 5 &&abs(parseInt(nflMatchups[i].spread)) < 8 ){
-
-						bettingLine = "Medium Line"
-
-
-					}else{
-
-						bettingLine = "Big Line"
+						destination = "Road-"
 					}
 
+					if (parseInt(nflMatchups[i].spread) > 0){
+
+						favDog = "Dog-"
+					}else {
+
+						favDog = "Fav-"
+					}
+
+					if (nflMatchups[i].sport != "MLB" || nflMatchups[i].sport != "NHL" ){
+
+						if (Math.abs(parseInt(nflMatchups[i].spread)) < 4){
+
+							bettingLine = "Small Line"
+
+						}else if (Math.abs(parseInt(nflMatchups[i].spread)) >= 4 && Math.abs(parseInt(nflMatchups[i].spread)) < 7.5 ){
+
+							bettingLine = "Medium Line"
+
+
+						}else{
+
+							bettingLine = "Big Line"
+						}
+
+					}
+
+					sport = nflMatchups[i].sport
+					selection = nflMatchups[i].fav
+					situation = destination + favDog + bettingLine
+					matchupId = nflMatchups[i].game_id
+
+					
+
+					selection_matchup_id.value = matchupId
+					selection_cat.value = situation
+					selection_choice.value = selection
+
+					new_selection.submit()
+
+
 				}
 
-				sport = nflMatchups[i].sport
-				selection = nflMatchups[i].fav
-				situation = destination + favDog + bettingLine
-				matchupId = nflMatchups[i].game_id
-
-				selection_matchup_id.value = matchupId
-				selection_cat.value = situation
-				selection_choice.value = selection
-
-				new_selection.submit
-
+				console.log(gameCheck)
 
 			})
 
@@ -234,16 +252,18 @@
 		box.appendChild(overTotal)
 		box.appendChild(dog)
 		box.appendChild(underTotal)
-		game_container.appendChild(box)
-		
 
+
+
+		
+		game_container.append(box)	
 		
 	}
 
 
+
+
 </script>
-
-
 
 
 <div class = "hide">

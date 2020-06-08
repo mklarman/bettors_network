@@ -46,35 +46,14 @@ module MatchupsHelper
 
 		@nfl_matchups = []
 
-		Matchup.all.each do |m|
-
-			@test = m.date
-
-			my_date = @my_date
-
+		Matchup.all.each do |m|	
 			
-			date = self.convert_date(m.date)
+			self.convert_date(m.date)
 			
-			my_date = @matchup_date
+			if m.sport == "NFL" && @matchup_date >= @con_my_date
 
-			@test2 = my_date
+				if m.start_time.to_i >= @my_time			
 
-			if m.sport == "NFL" && my_date >= @my_date
-
-				my_bool = false
-
-				current_user.selections.each do |pick|
-
-					if m.id == pick.matchup.id
-
-						my_bool = true
-
-					end
-
-
-				end
-
-				if my_bool == false
 
 					@nfl_matchups.push(m)
 
@@ -155,164 +134,163 @@ module MatchupsHelper
 		@games_to_show = []
 
 		array_of_objects.each do |check|
+			
+
+			@matchup_obj = {}
 
 			
 
-				@matchup_obj = {}
+			@matchup_obj[:sport] = check.sport
+			@matchup_obj[:fav] = check.fav
+			@matchup_obj[:dog] = check.dog
+			@matchup_obj[:spread] = check.spread
+			@matchup_obj[:money_line] = check.money_line
+			@matchup_obj[:dog_ml] = check.dog_ml
+			@matchup_obj[:fav_home] = check.fav_home
+			@matchup_obj[:total] = check.total
+			@matchup_obj[:start_time] = check.start_time
+			@matchup_obj[:id] = check.id.to_s
 
-				
-
-				@matchup_obj[:sport] = check.sport
-				@matchup_obj[:fav] = check.fav
-				@matchup_obj[:dog] = check.dog
-				@matchup_obj[:spread] = check.spread
-				@matchup_obj[:money_line] = check.money_line
-				@matchup_obj[:dog_ml] = check.dog_ml
-				@matchup_obj[:fav_home] = check.fav_home
-				@matchup_obj[:total] = check.total
-				@matchup_obj[:start_time] = check.start_time
-				@matchup_obj[:id] = check.id.to_s
-
-				if current_user.selections[0]
-
-					current_user.selections.all.each do |sel|
-
-						@my_counter = 0
-
-						if sel.matchup_id == check.id
-
-							@my_counter = @my_counter + 1
-							
-						end
-
-						@matchup_obj[:counter] = @my_counter
+			@my_counter = 0
 
 
+			if current_user.selections[0]
+
+				current_user.selections.all.each do |sel|
+
+					if sel.matchup_id == check.id
+
+						@my_counter = @my_counter + 1
+						
 					end
-
-				else
 
 					@matchup_obj[:counter] = @my_counter
 
+
 				end
 
-				if @matchup_obj[:counter] == 0
+			else
 
-					@matchup_obj[:side_or_total] = "none"
-					@matchup_obj[:selection] = "none"
+				@matchup_obj[:counter] = @my_counter
+
+			end
+
+			if @matchup_obj[:counter] == 0
+
+				@matchup_obj[:side_or_total] = "none"
+				@matchup_obj[:selection] = "none"
+				@games_to_show.push(@matchup_obj)
+				
+
+
+			elsif @matchup_obj[:counter] == 1
+
+				current_user.selections.all.each do |sel|
+
+					if sel.matchup_id == check.id
+					
+						if sel.choice == "Fav"
+
+							@matchup_obj[:side_or_total] = "side"
+							@matchup_obj[:selection] = check.fav + " " + check.spread.to_s
+
+
+						elsif sel.choice == "Dog"
+
+							@matchup_obj[:side_or_total] = "side"
+							@matchup_obj[:selection] = check.dog + " " + (check.spread.to_f * -1)
+
+
+						elsif sel.choice == "under"
+
+							@matchup_obj[:side_or_total] = "total"
+							@matchup_obj[:selection] = "Under " + check.total.to_s
+
+
+						elsif sel.choice == "over"
+
+							@matchup_obj[:side_or_total] = "total"
+							@matchup_obj[:selection] = "Over " + check.total.to_s
+
+
+						end
+
+					end
+
 					@games_to_show.push(@matchup_obj)
 
+				end
 
-				elsif @matchup_obj[:counter] == 1
+			else
 
-					current_user.selections.all.each do |sel|
+				@matchup_obj[:side_or_total] = "both"
+				@matchup_obj[:sel_one] = ""
+				@matchup_obj[:sel_two] = ""
 
-						if sel.matchup_id == check.id
-						
-							if sel.choice == "Fav"
+				current_user.selections.all.each do |sel|
 
-								@matchup_obj[:side_or_total] = "side"
-								@matchup_obj[:selection] = check.fav + " " + check.spread.to_s
+					if sel.matchup_id == check.id
+					
+						if sel.choice == "Fav"
 
+							if @matchup[:sel_one].length == 0
 
-							elsif sel.choice == "Dog"
+								@matchup[:sel_one] = check.fav + " " + check.spread.to_s
 
-								@matchup_obj[:side_or_total] = "side"
-								@matchup_obj[:selection] = check.dog + " " + (check.spread.to_f * -1)
+							else
 
-
-							elsif sel.choice == "under"
-
-								@matchup_obj[:side_or_total] = "total"
-								@matchup_obj[:selection] = "Under " + check.total.to_s
-
-
-							elsif sel.choice == "over"
-
-								@matchup_obj[:side_or_total] = "total"
-								@matchup_obj[:selection] = "Over " + check.total.to_s
-
+								@matchup[:sel_two] = check.fav + " " + check.spread.to_s
 
 							end
 
-						end
+						elsif sel.choice == "Dog"
 
-						@games_to_show.push(@matchup_obj)
+							if @matchup[:sel_one].length == 0
 
-					end
+								@matchup[:sel_one] = check.dog + " " + (check.spread.to_f * -1)
 
-				else
+							else
 
-					@matchup_obj[:side_or_total] = "both"
-					@matchup_obj[:sel_one] = ""
-					@matchup_obj[:sel_two] = ""
-
-					current_user.selections.all.each do |sel|
-
-						if sel.matchup_id == check.id
-						
-							if sel.choice == "Fav"
-
-								if @matchup[:sel_one].length == 0
-
-									@matchup[:sel_one] = check.fav + " " + check.spread.to_s
-
-								else
-
-									@matchup[:sel_two] = check.fav + " " + check.spread.to_s
-
-								end
-
-							elsif sel.choice == "Dog"
-
-								if @matchup[:sel_one].length == 0
-
-									@matchup[:sel_one] = check.dog + " " + (check.spread.to_f * -1)
-
-								else
-
-									@matchup[:sel_two] = check.dog + " " + (check.spread.to_f * -1)
-
-								end
-
-							elsif sel.choice == "under"
-
-								if @matchup[:sel_one].length == 0
-
-									@matchup[:sel_one] = "Under " + check.total.to_s
-
-								else
-
-									@matchup[:sel_two] = "Under " + check.total.to_s
-
-								end
-
-
-
-							elsif sel.choice == "over"
-
-								if @matchup[:sel_one].length == 0
-
-									@matchup[:sel_one] = "Over " + check.total.to_s
-
-								else
-
-									@matchup[:sel_two] = "Over " + check.total.to_s
-
-								end
-
+								@matchup[:sel_two] = check.dog + " " + (check.spread.to_f * -1)
 
 							end
 
+						elsif sel.choice == "under"
+
+							if @matchup[:sel_one].length == 0
+
+								@matchup[:sel_one] = "Under " + check.total.to_s
+
+							else
+
+								@matchup[:sel_two] = "Under " + check.total.to_s
+
+							end
+
+
+
+						elsif sel.choice == "over"
+
+							if @matchup[:sel_one].length == 0
+
+								@matchup[:sel_one] = "Over " + check.total.to_s
+
+							else
+
+								@matchup[:sel_two] = "Over " + check.total.to_s
+
+							end
+
+
 						end
 
-						@games_to_show.push(@matchup_obj)
-
 					end
+
+					@games_to_show.push(@matchup_obj)
 
 				end
 
-			
+			end		
 
 		end
 	end
